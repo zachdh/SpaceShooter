@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwpet7perkcis"]
+
+[ext_resource type="PackedScene" uid="uid://cu3lcmqschdha" path="res://plutoGrass.tscn" id="1_luf36"]
+[ext_resource type="PackedScene" uid="uid://4fwvkvge6gvg" path="res://character_body_2d.tscn" id="2_xgrpu"]
+
+[node name="Main Scene" type="Node2D"]
+
+[node name="Plutograsstilereal[781]" parent="." instance=ExtResource("1_luf36")]
+position = Vector2(224, 128)
+
+[node name="Plutograsstilereal[781]2" parent="." instance=ExtResource("1_luf36")]
+position = Vector2(160, 128)
+
+[node name="Plutograsstilereal[781]3" parent="." instance=ExtResource("1_luf36")]
+position = Vector2(288, 128)
+
+[node name="Plutograsstilereal[781]4" parent="." instance=ExtResource("1_luf36")]
+position = Vector2(160, 64)
+
+[node name="Plutograsstilereal[781]5" parent="." instance=ExtResource("1_luf36")]
+position = Vector2(160, 192)
+
+[node name="Plutograsstilereal[781]6" parent="." instance=ExtResource("1_luf36")]
+position = Vector2(224, 192)
+
+[node name="Plutograsstilereal[781]7" parent="." instance=ExtResource("1_luf36")]
+position = Vector2(288, 192)
+
+[node name="Plutograsstilereal[781]8" parent="." instance=ExtResource("1_luf36")]
+position = Vector2(224, 64)
+
+[node name="Plutograsstilereal[781]9" parent="." instance=ExtResource("1_luf36")]
+position = Vector2(288, 64)
+
+[node name="CharacterBody2D" parent="Plutograsstilereal[781]9" instance=ExtResource("2_xgrpu")]
+position = Vector2(-65, 62)
+
+[node name="Camera2D" type="Camera2D" parent="Plutograsstilereal[781]9/CharacterBody2D"]
+zoom = Vector2(3, 3)
