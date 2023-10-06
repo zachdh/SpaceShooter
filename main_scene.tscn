@@ -29,8 +29,11 @@ position = Vector2(288, 192)
 [node name="Plutograsstilereal[781]8" parent="." instance=ExtResource("1_luf36")]
 position = Vector2(224, 64)
 
-[node name="Plutograsstilereal[781]9" parent="." instance=ExtResource("1_luf36")]
+[node name="Plutograsstilereal[781]10" parent="." instance=ExtResource("1_luf36")]
 position = Vector2(288, 64)
+
+[node name="Plutograsstilereal[781]9" parent="." instance=ExtResource("1_luf36")]
+position = Vector2(352, 64)
 
 [node name="CharacterBody2D" parent="Plutograsstilereal[781]9" instance=ExtResource("2_xgrpu")]
 position = Vector2(-65, 62)
