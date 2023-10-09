@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcvmnqf5gtx5k"
-path="res://.godot/imported/Astronaut (Animation - F4).png-f4de2724a76cf6b5ff7bbe9c50dd0512.ctex"
+uid="uid://c01ufkbsfgxrm"
+path="res://.godot/imported/Astronaut (Animation2 - F2).png-bba710af07d87e9f75027e51df72cf76.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Astronaut (Animation - F4).png"
-dest_files=["res://.godot/imported/Astronaut (Animation - F4).png-f4de2724a76cf6b5ff7bbe9c50dd0512.ctex"]
+source_file="res://Assets/Astronaut (Animation2 - F2).png"
+dest_files=["res://.godot/imported/Astronaut (Animation2 - F2).png-bba710af07d87e9f75027e51df72cf76.ctex"]
 
 [params]
 

@@ -1,15 +1,46 @@
-[gd_scene load_steps=9 format=3 uid="uid://4fwvkvge6gvg"]
+[gd_scene load_steps=15 format=3 uid="uid://4fwvkvge6gvg"]
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_3qfwn"]
 [ext_resource type="Texture2D" uid="uid://ckwipvyw75t2n" path="res://Assets/Astronaut (Animation - F0).png" id="3_bo271"]
 [ext_resource type="Texture2D" uid="uid://bh1fobt27ujkb" path="res://Assets/Astronaut (Animation - F1).png" id="4_grtvr"]
 [ext_resource type="Texture2D" uid="uid://cflmaga1rl3py" path="res://Assets/Astronaut (Animation - F2).png" id="5_rpsx1"]
 [ext_resource type="Texture2D" uid="uid://cyk0nxnhyei7n" path="res://Assets/Astronaut (Animation - F3).png" id="6_cacpm"]
-[ext_resource type="Texture2D" uid="uid://djaw8q3oe2q04" path="res://Assets/Astronaut (Animation - F4).png" id="7_1bu2y"]
 [ext_resource type="Texture2D" uid="uid://dcyx8b5xaleyr" path="res://Assets/Astronaut (Animation - F5).png" id="8_6ngkl"]
+[ext_resource type="Texture2D" uid="uid://cbi2sqbk807gl" path="res://Assets/Astronaut (Animation2 - F0).png" id="8_sv23c"]
+[ext_resource type="Texture2D" uid="uid://c01ufkbsfgxrm" path="res://Assets/Astronaut (Animation2 - F2).png" id="9_xe0um"]
+[ext_resource type="Texture2D" uid="uid://2c4o2ldvk1sa" path="res://Assets/Astronaut (Animation2 - F1).png" id="10_r86xe"]
+[ext_resource type="Texture2D" uid="uid://cx6ndyna2ou16" path="res://Assets/Astronaut (Animation2 - F3).png" id="11_1senb"]
+[ext_resource type="Texture2D" uid="uid://dye2w8hkxpral" path="res://Assets/Astronaut (Animation2 - F4).png" id="12_1bji7"]
+[ext_resource type="Texture2D" uid="uid://dw1iwrc8juivf" path="res://Assets/Astronaut (Animation2 - F5).png" id="13_xlo72"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_m6cpc"]
+load_path = "res://.godot/imported/Astronaut (Animation - F4).png-f4de2724a76cf6b5ff7bbe9c50dd0512.ctex"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jw2en"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_sv23c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_xe0um")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_r86xe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_1senb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_1bji7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_xlo72")
+}],
+"loop": true,
+"name": &"AstronautWalkingUP",
+"speed": 12.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_bo271")
@@ -24,13 +55,13 @@ animations = [{
 "texture": ExtResource("5_rpsx1")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_1bu2y")
+"texture": SubResource("CompressedTexture2D_m6cpc")
 }, {
 "duration": 1.0,
 "texture": ExtResource("8_6ngkl")
 }],
 "loop": true,
-"name": &"AstronautAnimation",
+"name": &"default",
 "speed": 12.0
 }]
 
@@ -39,8 +70,6 @@ script = ExtResource("1_3qfwn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jw2en")
-animation = &"AstronautAnimation"
-frame_progress = 0.433317
 speed_scale = 1.25
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

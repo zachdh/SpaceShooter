@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcvmnqf5gtx5k"
-path="res://.godot/imported/Astronaut (Animation - F4).png-f4de2724a76cf6b5ff7bbe9c50dd0512.ctex"
+uid="uid://ctxheopvormyr"
+path="res://.godot/imported/Ray Gun.png-89a24af848a96012dfec16fe303807bd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Astronaut (Animation - F4).png"
-dest_files=["res://.godot/imported/Astronaut (Animation - F4).png-f4de2724a76cf6b5ff7bbe9c50dd0512.ctex"]
+source_file="res://Assets/Ray Gun.png"
+dest_files=["res://.godot/imported/Ray Gun.png-89a24af848a96012dfec16fe303807bd.ctex"]
 
 [params]
 
