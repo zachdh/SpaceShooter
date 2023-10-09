@@ -12,6 +12,7 @@ func _process(delta):
 	Global.global_rotation_angle = atan2(Global.global_direction.y, Global.global_direction.x)
 	if Global.global_rotation_angle < -1*(PI/2) or Global.global_rotation_angle > PI/2:
 		$RayGun.flip_v = true
+		$RayGun.rotation = Global.global_rotation_angle
 	else:
 		$RayGun.flip_v = false
 		$RayGun.rotation = Global.global_rotation_angle

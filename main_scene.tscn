@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwpet7perkcis"]
+[gd_scene load_steps=6 format=3 uid="uid://cwpet7perkcis"]
 
 [ext_resource type="PackedScene" uid="uid://cu3lcmqschdha" path="res://plutoGrass.tscn" id="1_luf36"]
 [ext_resource type="Script" path="res://main_scene.gd" id="1_wu2bd"]
 [ext_resource type="PackedScene" uid="uid://4fwvkvge6gvg" path="res://character_body_2d.tscn" id="2_xgrpu"]
 [ext_resource type="PackedScene" uid="uid://cytsf1twqqjh6" path="res://ray_gun.tscn" id="3_1cxyh"]
+[ext_resource type="PackedScene" uid="uid://qospoxm7p11v" path="res://plutoWall.tscn" id="5_4hlv6"]
 
 [node name="Main Scene" type="Node2D"]
 script = ExtResource("1_wu2bd")
@@ -11,17 +12,8 @@ script = ExtResource("1_wu2bd")
 [node name="Plutograsstilereal[781]" parent="." instance=ExtResource("1_luf36")]
 position = Vector2(224, 128)
 
-[node name="Plutograsstilereal[781]2" parent="." instance=ExtResource("1_luf36")]
-position = Vector2(160, 128)
-
 [node name="Plutograsstilereal[781]3" parent="." instance=ExtResource("1_luf36")]
 position = Vector2(288, 128)
-
-[node name="Plutograsstilereal[781]4" parent="." instance=ExtResource("1_luf36")]
-position = Vector2(160, 64)
-
-[node name="Plutograsstilereal[781]5" parent="." instance=ExtResource("1_luf36")]
-position = Vector2(160, 192)
 
 [node name="Plutograsstilereal[781]6" parent="." instance=ExtResource("1_luf36")]
 position = Vector2(224, 192)
@@ -34,6 +26,17 @@ position = Vector2(224, 64)
 
 [node name="Plutograsstilereal[781]9" parent="." instance=ExtResource("1_luf36")]
 position = Vector2(288, 64)
+
+[node name="PlutoWalls" type="CanvasGroup" parent="."]
+position = Vector2(160, 64)
+
+[node name="StaticBody2D2" parent="PlutoWalls" instance=ExtResource("5_4hlv6")]
+position = Vector2(0, 64)
+
+[node name="StaticBody2D" parent="PlutoWalls" instance=ExtResource("5_4hlv6")]
+
+[node name="StaticBody2D3" parent="PlutoWalls" instance=ExtResource("5_4hlv6")]
+position = Vector2(0, 128)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_xgrpu")]
 position = Vector2(224, 128)

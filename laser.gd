@@ -12,3 +12,7 @@ func show_body():
 # Function to hide the StaticBody2D
 func hide_body():
 	self.hide()
+
+
+func shoot():
+	pass
