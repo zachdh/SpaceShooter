@@ -1,9 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bx3bk5duqv47e"]
+[gd_scene load_steps=5 format=3 uid="uid://bx3bk5duqv47e"]
 
 [ext_resource type="Texture2D" uid="uid://bfseei37jdghp" path="res://Assets/Alien Enemy.png" id="1_at5xn"]
 [ext_resource type="Script" path="res://AlienEnemy.gd" id="1_q25wr"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_eieuq"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_b268l"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -14,11 +14,19 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="StaticBody2D" type="StaticBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_8re16"]
+radius = 80.1561
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_q25wr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_eieuq")
+sprite_frames = SubResource("SpriteFrames_b268l")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-4, 9, 3, 9, 3, 8, 6, 7, 6, 1, 4, 0, 5, -2, 5, -5, 3, -8, -3, -8, -6, -5, -4, 0, -7, 1, -6, 7, -4, 8)
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_8re16")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

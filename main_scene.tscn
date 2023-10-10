@@ -40,7 +40,7 @@ position = Vector2(0, 64)
 position = Vector2(0, 128)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_xgrpu")]
-position = Vector2(224, 128)
+position = Vector2(192, 120)
 
 [node name="RayGun" parent="CharacterBody2D" instance=ExtResource("3_1cxyh")]
 position = Vector2(0, 3)
@@ -49,7 +49,7 @@ position = Vector2(0, 3)
 zoom = Vector2(3, 3)
 
 [node name="RigidBody2D" parent="." instance=ExtResource("6_qvyed")]
-position = Vector2(298, 130)
+position = Vector2(312, 128)
 
 [connection signal="OnSpacePress" from="." to="CharacterBody2D" method="_on_main_scene_on_space_press"]
 [connection signal="OnSpacePress" from="." to="CharacterBody2D/RayGun" method="_on_main_scene_on_space_press"]
