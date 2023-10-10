@@ -40,9 +40,6 @@ func _on_main_scene_on_space_press():
 		animated_sprite.flip_h = true
 		movement()
 
-
-		
-		
 func _physics_process(delta):
 	velocity = Vector2()
 	

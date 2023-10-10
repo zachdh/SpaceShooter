@@ -66,6 +66,7 @@ animations = [{
 }]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+input_pickable = true
 script = ExtResource("1_3qfwn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

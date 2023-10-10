@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwpet7perkcis"]
+[gd_scene load_steps=7 format=3 uid="uid://cwpet7perkcis"]
 
 [ext_resource type="PackedScene" uid="uid://cu3lcmqschdha" path="res://plutoGrass.tscn" id="1_luf36"]
 [ext_resource type="Script" path="res://main_scene.gd" id="1_wu2bd"]
 [ext_resource type="PackedScene" uid="uid://4fwvkvge6gvg" path="res://character_body_2d.tscn" id="2_xgrpu"]
 [ext_resource type="PackedScene" uid="uid://cytsf1twqqjh6" path="res://ray_gun.tscn" id="3_1cxyh"]
 [ext_resource type="PackedScene" uid="uid://qospoxm7p11v" path="res://plutoWall.tscn" id="5_4hlv6"]
+[ext_resource type="PackedScene" uid="uid://bx3bk5duqv47e" path="res://AlienEnemy.tscn" id="6_qvyed"]
 
 [node name="Main Scene" type="Node2D"]
 script = ExtResource("1_wu2bd")
@@ -46,6 +47,9 @@ position = Vector2(0, 3)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 zoom = Vector2(3, 3)
+
+[node name="RigidBody2D" parent="." instance=ExtResource("6_qvyed")]
+position = Vector2(298, 130)
 
 [connection signal="OnSpacePress" from="." to="CharacterBody2D" method="_on_main_scene_on_space_press"]
 [connection signal="OnSpacePress" from="." to="CharacterBody2D/RayGun" method="_on_main_scene_on_space_press"]
