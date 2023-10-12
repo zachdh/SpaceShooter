@@ -4,11 +4,13 @@ extends CharacterBody2D
 var speed = 115.0
 var animated_sprite : AnimatedSprite2D
 
-
+func getattacked():
+	pass
 
 func _ready():
 	animated_sprite = $AnimatedSprite2D
 	animated_sprite.animation = "default"
+	Global.global_character_position = self.position
 
 func movement():
 	velocity = Vector2()
