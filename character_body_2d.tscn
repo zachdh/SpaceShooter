@@ -1,17 +1,17 @@
 [gd_scene load_steps=15 format=3 uid="uid://4fwvkvge6gvg"]
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_3qfwn"]
-[ext_resource type="Texture2D" uid="uid://ckwipvyw75t2n" path="res://Assets/Astronaut (Animation - F0).png" id="3_bo271"]
-[ext_resource type="Texture2D" uid="uid://bh1fobt27ujkb" path="res://Assets/Astronaut (Animation - F1).png" id="4_grtvr"]
-[ext_resource type="Texture2D" uid="uid://cflmaga1rl3py" path="res://Assets/Astronaut (Animation - F2).png" id="5_rpsx1"]
-[ext_resource type="Texture2D" uid="uid://cyk0nxnhyei7n" path="res://Assets/Astronaut (Animation - F3).png" id="6_cacpm"]
-[ext_resource type="Texture2D" uid="uid://dcyx8b5xaleyr" path="res://Assets/Astronaut (Animation - F5).png" id="8_6ngkl"]
-[ext_resource type="Texture2D" uid="uid://cbi2sqbk807gl" path="res://Assets/Astronaut (Animation2 - F0).png" id="8_sv23c"]
-[ext_resource type="Texture2D" uid="uid://c01ufkbsfgxrm" path="res://Assets/Astronaut (Animation2 - F2).png" id="9_xe0um"]
-[ext_resource type="Texture2D" uid="uid://2c4o2ldvk1sa" path="res://Assets/Astronaut (Animation2 - F1).png" id="10_r86xe"]
-[ext_resource type="Texture2D" uid="uid://cx6ndyna2ou16" path="res://Assets/Astronaut (Animation2 - F3).png" id="11_1senb"]
-[ext_resource type="Texture2D" uid="uid://dye2w8hkxpral" path="res://Assets/Astronaut (Animation2 - F4).png" id="12_1bji7"]
-[ext_resource type="Texture2D" uid="uid://dw1iwrc8juivf" path="res://Assets/Astronaut (Animation2 - F5).png" id="13_xlo72"]
+[ext_resource type="Texture2D" uid="uid://cbi2sqbk807gl" path="res://Assets/AstronautUP/Astronaut (Animation2 - F0).png" id="2_fnipk"]
+[ext_resource type="Texture2D" uid="uid://c01ufkbsfgxrm" path="res://Assets/AstronautUP/Astronaut (Animation2 - F2).png" id="3_loy0g"]
+[ext_resource type="Texture2D" uid="uid://2c4o2ldvk1sa" path="res://Assets/AstronautUP/Astronaut (Animation2 - F1).png" id="4_nmci3"]
+[ext_resource type="Texture2D" uid="uid://cx6ndyna2ou16" path="res://Assets/AstronautUP/Astronaut (Animation2 - F3).png" id="5_tyvny"]
+[ext_resource type="Texture2D" uid="uid://dye2w8hkxpral" path="res://Assets/AstronautUP/Astronaut (Animation2 - F4).png" id="6_raqxh"]
+[ext_resource type="Texture2D" uid="uid://dw1iwrc8juivf" path="res://Assets/AstronautUP/Astronaut (Animation2 - F5).png" id="7_yqk3t"]
+[ext_resource type="Texture2D" uid="uid://ckwipvyw75t2n" path="res://Assets/AstronautDOWN/Astronaut (Animation - F0).png" id="8_ofn2o"]
+[ext_resource type="Texture2D" uid="uid://bh1fobt27ujkb" path="res://Assets/AstronautDOWN/Astronaut (Animation - F1).png" id="9_53wai"]
+[ext_resource type="Texture2D" uid="uid://cyk0nxnhyei7n" path="res://Assets/AstronautDOWN/Astronaut (Animation - F3).png" id="10_6usgv"]
+[ext_resource type="Texture2D" uid="uid://cflmaga1rl3py" path="res://Assets/AstronautDOWN/Astronaut (Animation - F2).png" id="11_xk28v"]
+[ext_resource type="Texture2D" uid="uid://dcyx8b5xaleyr" path="res://Assets/AstronautDOWN/Astronaut (Animation - F5).png" id="12_knvt2"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_m6cpc"]
 load_path = "res://.godot/imported/Astronaut (Animation - F4).png-f4de2724a76cf6b5ff7bbe9c50dd0512.ctex"
@@ -20,22 +20,22 @@ load_path = "res://.godot/imported/Astronaut (Animation - F4).png-f4de2724a76cf6
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_sv23c")
+"texture": ExtResource("2_fnipk")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_xe0um")
+"texture": ExtResource("3_loy0g")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_r86xe")
+"texture": ExtResource("4_nmci3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_1senb")
+"texture": ExtResource("5_tyvny")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_1bji7")
+"texture": ExtResource("6_raqxh")
 }, {
 "duration": 1.0,
-"texture": ExtResource("13_xlo72")
+"texture": ExtResource("7_yqk3t")
 }],
 "loop": true,
 "name": &"AstronautWalkingUP",
@@ -43,22 +43,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_bo271")
+"texture": ExtResource("8_ofn2o")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_grtvr")
+"texture": ExtResource("9_53wai")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_cacpm")
+"texture": ExtResource("10_6usgv")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_rpsx1")
+"texture": ExtResource("11_xk28v")
 }, {
 "duration": 1.0,
 "texture": SubResource("CompressedTexture2D_m6cpc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_6ngkl")
+"texture": ExtResource("12_knvt2")
 }],
 "loop": true,
 "name": &"default",

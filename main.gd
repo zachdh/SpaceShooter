@@ -12,6 +12,3 @@ func _process(_delta):
 	else:
 		emit_signal("OnSpaceRelease")
 
-
-
-#Thing to do still are redesign the raygun model and orient the character with the raygun when space is pressed

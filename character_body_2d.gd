@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 115.0
+@export var speed : int = 115
 var animated_sprite : AnimatedSprite2D
 const MAX_HEALTH = 5
 var health = MAX_HEALTH
@@ -79,8 +79,9 @@ func update_health_ui():
 		
 func damage():
 	health -= 1
-	if health < 0:
-		health = MAX_HEALTH
+	if health == 0:
+		get_tree().paused = true
+		print("Game Over!")
 	update_health_ui()
 
 

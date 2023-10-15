@@ -1,12 +1,14 @@
 extends CharacterBody2D
 
 signal playerHit
-@export var speed = 25
+@export var speed : int = 25
 var player_position
 var target_position
 var target = null
 var EnemySprite : AnimatedSprite2D
 var rotationDir
+const MAX_HEALTH = 3
+var health = MAX_HEALTH
 
 func _ready():
 	EnemySprite = $AlienAnimation
@@ -36,6 +38,11 @@ func _on_detection_range_body_entered(body):
 		target = body
 
 func _on_enemy_hitbox_body_entered(body):
+	print(body)
 	if body.has_method("hit"):
 		emit_signal("playerHit")
 		print("You have been hit!")
+	if body.has_method("shot"):
+		health -= 1
+		if health == 0:
+			queue_free()

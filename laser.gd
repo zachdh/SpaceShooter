@@ -1,18 +1,23 @@
 extends StaticBody2D
 
+@export var speed : int = 10
 
+var direction := Vector2.ZERO
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.hide()  # Hide the StaticBody2D initially
-
-# Function to show the StaticBody2D
-func show_body():
-	self.show()
-
-# Function to hide the StaticBody2D
-func hide_body():
-	self.hide()
+	pass # Replace with function body.
 
 
-func shoot():
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if direction != Vector2.ZERO:
+		var velocity = direction * speed
+		
+		global_position += velocity
+		
+func set_direction(direction: Vector2):
+	self.direction = direction
+	
+func shot():
 	pass
+	
