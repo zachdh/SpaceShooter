@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkofefela1ssr"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_6l1fl"]
+[ext_resource type="Texture2D" uid="uid://bfseei37jdghp" path="res://Assets/Alien Enemy.png" id="2_i1prh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gxmpi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_i1prh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_im82f"]
+radius = 92.1358
+
+[node name="RigidBody2D" type="RigidBody2D"]
+script = ExtResource("1_6l1fl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gxmpi")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_im82f")

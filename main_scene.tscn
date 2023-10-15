@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://4fwvkvge6gvg" path="res://character_body_2d.tscn" id="2_xgrpu"]
 [ext_resource type="PackedScene" uid="uid://cytsf1twqqjh6" path="res://ray_gun.tscn" id="3_1cxyh"]
 [ext_resource type="PackedScene" uid="uid://qospoxm7p11v" path="res://plutoWall.tscn" id="5_4hlv6"]
-[ext_resource type="PackedScene" uid="uid://bx3bk5duqv47e" path="res://AlienEnemy.tscn" id="6_qvyed"]
+[ext_resource type="PackedScene" uid="uid://dkofefela1ssr" path="res://alien_enemy.tscn" id="6_oqr6g"]
 
 [node name="Main Scene" type="Node2D"]
 script = ExtResource("1_wu2bd")
@@ -39,18 +39,33 @@ position = Vector2(0, 64)
 [node name="StaticBody2D3" parent="PlutoWalls" instance=ExtResource("5_4hlv6")]
 position = Vector2(0, 128)
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("2_xgrpu")]
-position = Vector2(192, 120)
+[node name="MainCharacter" parent="." instance=ExtResource("2_xgrpu")]
+position = Vector2(178, 128)
 
-[node name="RayGun" parent="CharacterBody2D" instance=ExtResource("3_1cxyh")]
+[node name="RayGun" parent="MainCharacter" instance=ExtResource("3_1cxyh")]
 position = Vector2(0, 3)
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+[node name="Camera2D" type="Camera2D" parent="MainCharacter"]
 zoom = Vector2(3, 3)
 
-[node name="RigidBody2D" parent="." instance=ExtResource("6_qvyed")]
-position = Vector2(312, 128)
+[node name="HealthLabel" type="Label" parent="MainCharacter/Camera2D"]
+offset_left = -189.0
+offset_top = -109.0
+offset_right = -153.0
+offset_bottom = -86.0
 
-[connection signal="OnSpacePress" from="." to="CharacterBody2D" method="_on_main_scene_on_space_press"]
-[connection signal="OnSpacePress" from="." to="CharacterBody2D/RayGun" method="_on_main_scene_on_space_press"]
-[connection signal="OnSpaceRelease" from="." to="CharacterBody2D/RayGun" method="_on_main_scene_on_space_release"]
+[node name="HealthBar" type="ProgressBar" parent="MainCharacter/Camera2D"]
+offset_left = -115.0
+offset_top = -99.0
+offset_right = -57.0
+offset_bottom = -95.0
+step = 1.0
+show_percentage = false
+
+[node name="AlienEnemy" parent="." instance=ExtResource("6_oqr6g")]
+position = Vector2(309, 126)
+
+[connection signal="OnSpacePress" from="." to="MainCharacter" method="_on_main_scene_on_space_press"]
+[connection signal="OnSpacePress" from="." to="MainCharacter/RayGun" method="_on_main_scene_on_space_press"]
+[connection signal="OnSpaceRelease" from="." to="MainCharacter/RayGun" method="_on_main_scene_on_space_release"]
+[connection signal="playerHit" from="AlienEnemy" to="MainCharacter" method="_on_alien_enemy_player_hit"]
