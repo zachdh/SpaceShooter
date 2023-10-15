@@ -60,8 +60,8 @@ func _physics_process(_delta):
 		animated_sprite.animation = "default"
 	velocity = velocity.normalized() * speed
 	move_and_slide()
-
 	
+func _process(delta):
 	if velocity.length() > 0:
 		animated_sprite.play()
 	else:
@@ -76,8 +76,8 @@ func hit():
 func update_health_ui():
 	$Camera2D/HealthLabel.text = "Health: %s" % health
 	$Camera2D/HealthBar.value = health
-		
-func damage():
+
+func _on_alien_enemy_player_hit():
 	health -= 1
 	if health == 0:
 		get_tree().paused = true
@@ -85,5 +85,4 @@ func damage():
 	update_health_ui()
 
 
-func _on_alien_enemy_player_hit():
-	damage()
+

@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal playerHit
+signal enemyHit
 @export var speed : int = 25
 var player_position
 var target_position
@@ -16,8 +17,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	if target == null:
-		pass
 	if target != null:
 		player_position = target.position
 		target_position = (player_position - self.position).normalized()
@@ -31,7 +30,14 @@ func _physics_process(delta):
 		elif rotationDir > PI/2 and rotationDir < PI: #Looking DownLeft
 			EnemySprite.flip_h = true
 		velocity = target_position * speed
-		move_and_slide()
+	move_and_slide()
+
+func _process(delta):
+	if velocity.length() > 0:
+		$AlienAnimation.play()
+	else:
+		$AlienAnimation.frame = 4
+
 
 func _on_detection_range_body_entered(body):
 	if body.has_method("chase"):
@@ -43,6 +49,9 @@ func _on_enemy_hitbox_body_entered(body):
 		emit_signal("playerHit")
 		print("You have been hit!")
 	if body.has_method("shot"):
+		emit_signal("enemyHit")
 		health -= 1
 		if health == 0:
 			queue_free()
+
+
