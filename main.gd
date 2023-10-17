@@ -2,6 +2,9 @@ extends Node2D
 signal OnSpacePress
 signal OnSpaceRelease
 
+@onready var laserManager = $LaserManager
+@onready var player = $LaserManager
+  
 func _ready():
 	pass
 

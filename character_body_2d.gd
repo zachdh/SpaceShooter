@@ -78,6 +78,7 @@ func update_health_ui():
 	$Camera2D/HealthBar.value = health
 
 func _on_alien_enemy_player_hit():
+	print("singal has been emitted")
 	health -= 1
 	if health == 0:
 		get_tree().paused = true
