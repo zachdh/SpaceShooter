@@ -1,6 +1,5 @@
 extends Node2D
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -9,3 +8,15 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+func _on_alien_enemy_enemy_hit(body):
+	return false
+	if body.get_method("shot"):
+		return true
+
+
+func _on_ray_gun_player_fired_bullet(laser):
+	pass
+
+

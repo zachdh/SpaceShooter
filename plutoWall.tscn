@@ -1,26 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://qospoxm7p11v"]
+[gd_scene load_steps=3 format=3 uid="uid://qospoxm7p11v"]
 
 [ext_resource type="Texture2D" uid="uid://b8doi76k8ru4g" path="res://Assets/plutogroundendtile.png" id="1_xdycn"]
-
-[sub_resource type="GDScript" id="GDScript_fhbmg"]
-script/source = "extends StaticBody2D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
-"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nfhit"]
 size = Vector2(13, 64)
 
 [node name="StaticBody2D" type="StaticBody2D"]
-script = SubResource("GDScript_fhbmg")
 
 [node name="Plutogroundendtile" type="Sprite2D" parent="."]
 texture = ExtResource("1_xdycn")

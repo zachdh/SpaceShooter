@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 signal playerHit
-signal enemyHit
+signal enemyHit(body)
 @export var speed : int = 25
 var player_position
 var target_position
@@ -49,7 +49,7 @@ func _on_enemy_hitbox_body_entered(body):
 		emit_signal("playerHit")
 		print("You have been hit!")
 	if body.has_method("shot"):
-		emit_signal("enemyHit")
+		emit_signal("enemyHit", body)
 		health -= 1
 		if health == 0:
 			queue_free()

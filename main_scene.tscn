@@ -88,22 +88,11 @@ show_percentage = false
 position = Vector2(309, 126)
 
 [node name="LaserManager" type="Node2D" parent="."]
-position = Vector2(309, 126)
 script = ExtResource("5_42yx2")
-
-[node name="AlienEnemy2" parent="." instance=ExtResource("7_xe7dy")]
-position = Vector2(435, 214)
-
-[node name="AlienEnemy3" parent="." instance=ExtResource("7_xe7dy")]
-position = Vector2(511, 52)
-
-[node name="AlienEnemy4" parent="." instance=ExtResource("7_xe7dy")]
-position = Vector2(232, 27)
-
-[node name="AlienEnemy5" parent="." instance=ExtResource("7_xe7dy")]
-position = Vector2(206, 230)
 
 [connection signal="OnSpacePress" from="." to="MainCharacter" method="_on_main_scene_on_space_press"]
 [connection signal="OnSpacePress" from="." to="MainCharacter/RayGun" method="_on_main_scene_on_space_press"]
 [connection signal="OnSpaceRelease" from="." to="MainCharacter/RayGun" method="_on_main_scene_on_space_release"]
+[connection signal="player_fired_bullet" from="MainCharacter/RayGun" to="LaserManager" method="_on_ray_gun_player_fired_bullet"]
+[connection signal="enemyHit" from="AlienEnemy" to="LaserManager" method="_on_alien_enemy_enemy_hit"]
 [connection signal="playerHit" from="AlienEnemy" to="MainCharacter" method="_on_alien_enemy_player_hit"]

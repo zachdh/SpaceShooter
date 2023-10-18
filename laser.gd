@@ -20,7 +20,3 @@ func set_direction(direction: Vector2):
 	
 func shot():
 	pass
-	
-func _on_alien_enemy_enemy_hit():
-	print("laser hit enemy")
-	queue_free()
