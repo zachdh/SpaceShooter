@@ -9,14 +9,10 @@ func _ready():
 func _process(delta):
 	pass
 
-
-func _on_alien_enemy_enemy_hit(body):
-	return false
-	if body.get_method("shot"):
-		return true
-
-
-func _on_ray_gun_player_fired_bullet(laser):
-	pass
-
+func _on_ray_gun_player_fired_laser(laser, position, direction, rotation):
+	add_child(laser)
+	print(position)
+	laser.global_position = self.position
+	laser.set_direction(direction)
+	laser.set_rotation(rotation)
 

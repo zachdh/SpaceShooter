@@ -93,6 +93,6 @@ script = ExtResource("5_42yx2")
 [connection signal="OnSpacePress" from="." to="MainCharacter" method="_on_main_scene_on_space_press"]
 [connection signal="OnSpacePress" from="." to="MainCharacter/RayGun" method="_on_main_scene_on_space_press"]
 [connection signal="OnSpaceRelease" from="." to="MainCharacter/RayGun" method="_on_main_scene_on_space_release"]
-[connection signal="player_fired_bullet" from="MainCharacter/RayGun" to="LaserManager" method="_on_ray_gun_player_fired_bullet"]
+[connection signal="player_fired_laser" from="MainCharacter/RayGun" to="LaserManager" method="_on_ray_gun_player_fired_laser"]
 [connection signal="enemyHit" from="AlienEnemy" to="LaserManager" method="_on_alien_enemy_enemy_hit"]
 [connection signal="playerHit" from="AlienEnemy" to="MainCharacter" method="_on_alien_enemy_player_hit"]

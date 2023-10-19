@@ -1,8 +1,8 @@
 extends StaticBody2D
 
 @export var Laser : PackedScene
-@onready var end_of_gun = $Sprite2D/EndOfGun
-signal player_fired_bullet(laser)
+@onready var end_of_gun = $EndOfGun
+signal player_fired_laser(laser, position, direction, rotation)
 
 func _ready():
 	self.hide()
@@ -37,12 +37,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 func shoot():
 	var laser_instance = Laser.instantiate()
-	add_sibling(laser_instance)
 	laser_instance.global_position = end_of_gun.global_position
 	var target = get_global_mouse_position()
-	var direction = laser_instance.global_position.direction_to(target).normalized()
-	var rotation = atan2(direction.y, direction.x)
-	laser_instance.set_direction(direction)
-	laser_instance.set_rotation(rotation)
-	emit_signal("player_fired_bullet", laser_instance)
+	var direction_to_mouse = end_of_gun.global_position.direction_to(target).normalized()
+	var rotation = atan2(direction_to_mouse.y, direction_to_mouse.x)
+	emit_signal("player_fired_laser", laser_instance, end_of_gun.global_position, direction_to_mouse, rotation)
 
