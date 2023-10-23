@@ -15,9 +15,11 @@ func _process(delta):
 	if Global.global_rotation_angle < -1*(PI/2) or Global.global_rotation_angle > PI/2:
 		$Sprite2D.flip_v = true
 		$Sprite2D.rotation = Global.global_rotation_angle
+		$EndOfGun.rotation = Global.global_rotation_angle
 	else:
 		$Sprite2D.flip_v = false
 		$Sprite2D.rotation = Global.global_rotation_angle
+		$EndOfGun.rotation = Global.global_rotation_angle
 	if Global.global_rotation_angle < -1*(PI/4) and Global.global_rotation_angle > -1*(3*PI/4):
 		self.show_behind_parent = true
 	else:
@@ -37,7 +39,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 func shoot():
 	var laser_instance = Laser.instantiate()
-	laser_instance.global_position = end_of_gun.global_position
 	var target = get_global_mouse_position()
 	var direction_to_mouse = end_of_gun.global_position.direction_to(target).normalized()
 	var rotation = atan2(direction_to_mouse.y, direction_to_mouse.x)

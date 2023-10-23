@@ -10,9 +10,7 @@ func _process(delta):
 	pass
 
 func _on_ray_gun_player_fired_laser(laser, position, direction, rotation):
-	add_child(laser)
-	print(position)
-	laser.global_position = self.position
+	laser.global_position = position
 	laser.set_direction(direction)
 	laser.set_rotation(rotation)
-
+	add_child(laser)
