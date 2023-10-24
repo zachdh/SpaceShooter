@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
 signal playerHit
-signal enemyHit
 @export var speed : int = 25
 var player_position
 var target_position
@@ -44,14 +43,15 @@ func _on_detection_range_body_entered(body):
 		target = body
 
 func _on_enemy_hitbox_body_entered(body):
-	print(body)
 	if body.has_method("hit"):
 		emit_signal("playerHit")
 		print("You have been hit!")
 	if body.has_method("shot"):
-		emit_signal("enemyHit")
+		EnemySprite.modulate = "dd1d36"
 		health -= 1
 		if health == 0:
 			queue_free()
 
 
+#add player_hit by enemy knockback
+#add red hit marker for alien enemy

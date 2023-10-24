@@ -1,11 +1,12 @@
 extends StaticBody2D
 
 @export var speed : int = 10
+@onready var kill_timer = $KillTimer
 
 var direction := Vector2.ZERO
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	kill_timer.start()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,3 +21,7 @@ func set_direction(direction: Vector2):
 	
 func shot():
 	pass
+
+func _on_kill_timer_timeout() -> void:
+	queue_free()
+

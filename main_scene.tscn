@@ -84,8 +84,16 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_qvxts")
 step = 1.0
 show_percentage = false
 
-[node name="AlienEnemy" parent="." instance=ExtResource("7_xe7dy")]
-position = Vector2(309, 126)
+[node name="Aliens" type="CanvasGroup" parent="."]
+
+[node name="AlienEnemy" parent="Aliens" instance=ExtResource("7_xe7dy")]
+position = Vector2(296, 168)
+
+[node name="AlienEnemy2" parent="Aliens" instance=ExtResource("7_xe7dy")]
+position = Vector2(296, 8)
+
+[node name="AlienEnemy3" parent="Aliens" instance=ExtResource("7_xe7dy")]
+position = Vector2(408, 96)
 
 [node name="LaserManager" type="Node2D" parent="."]
 script = ExtResource("5_42yx2")
@@ -94,5 +102,6 @@ script = ExtResource("5_42yx2")
 [connection signal="OnSpacePress" from="." to="MainCharacter/RayGun" method="_on_main_scene_on_space_press"]
 [connection signal="OnSpaceRelease" from="." to="MainCharacter/RayGun" method="_on_main_scene_on_space_release"]
 [connection signal="player_fired_laser" from="MainCharacter/RayGun" to="LaserManager" method="_on_ray_gun_player_fired_laser"]
-[connection signal="enemyHit" from="AlienEnemy" to="LaserManager" method="_on_alien_enemy_enemy_hit"]
-[connection signal="playerHit" from="AlienEnemy" to="MainCharacter" method="_on_alien_enemy_player_hit"]
+[connection signal="playerHit" from="Aliens/AlienEnemy" to="MainCharacter" method="_on_alien_enemy_player_hit"]
+[connection signal="playerHit" from="Aliens/AlienEnemy2" to="MainCharacter" method="_on_alien_enemy_player_hit"]
+[connection signal="playerHit" from="Aliens/AlienEnemy3" to="MainCharacter" method="_on_alien_enemy_player_hit"]

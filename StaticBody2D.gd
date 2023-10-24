@@ -1,7 +1,7 @@
 extends StaticBody2D
 
 @export var Laser : PackedScene
-@onready var end_of_gun = $EndOfGun
+@onready var end_of_gun = $Sprite2D/EndOfGun
 signal player_fired_laser(laser, position, direction, rotation)
 
 func _ready():
@@ -15,11 +15,9 @@ func _process(delta):
 	if Global.global_rotation_angle < -1*(PI/2) or Global.global_rotation_angle > PI/2:
 		$Sprite2D.flip_v = true
 		$Sprite2D.rotation = Global.global_rotation_angle
-		$EndOfGun.rotation = Global.global_rotation_angle
 	else:
 		$Sprite2D.flip_v = false
 		$Sprite2D.rotation = Global.global_rotation_angle
-		$EndOfGun.rotation = Global.global_rotation_angle
 	if Global.global_rotation_angle < -1*(PI/4) and Global.global_rotation_angle > -1*(3*PI/4):
 		self.show_behind_parent = true
 	else:
