@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 signal playerHit
 @export var speed : int = 25
+@onready var hit_timer = $HitTimer
 var player_position
 var target_position
 var target = null
@@ -47,11 +48,16 @@ func _on_enemy_hitbox_body_entered(body):
 		emit_signal("playerHit")
 		print("You have been hit!")
 	if body.has_method("shot"):
-		EnemySprite.modulate = "dd1d36"
+		EnemySprite.modulate = "FE3E3E"
+		speed = -25
+		hit_timer.start()
 		health -= 1
 		if health == 0:
 			queue_free()
 
 
-#add player_hit by enemy knockback
-#add red hit marker for alien enemy
+#add player_hit by enemy knockbac
+
+func _on_hit_timer_timeout():
+	EnemySprite.modulate = "ffffff"
+	speed = 25

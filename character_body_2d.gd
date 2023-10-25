@@ -25,7 +25,8 @@ func movement():
 		velocity.y += 1
 	velocity = velocity.normalized() * speed
 	
-func _on_main_scene_on_space_press():
+func _physics_process(_delta):
+	velocity = Vector2()
 	if Global.global_rotation_angle < 0 and Global.global_rotation_angle > (-1*(PI/2)): #Looking UpRight
 		animated_sprite.animation = "AstronautWalkingUP"
 		animated_sprite.flip_h = false
@@ -42,23 +43,6 @@ func _on_main_scene_on_space_press():
 		animated_sprite.animation = "default"
 		animated_sprite.flip_h = true
 		movement()
-
-func _physics_process(_delta):
-	velocity = Vector2()
-	
-	if Input.is_action_pressed('left'):
-		velocity.x -= 1
-		animated_sprite.flip_h = true
-	if Input.is_action_pressed('right'):
-		velocity.x += 1
-		animated_sprite.flip_h = false
-	if Input.is_action_pressed('up'):
-		velocity.y -= 1
-		animated_sprite.animation = "AstronautWalkingUP"
-	if Input.is_action_pressed('down'):
-		velocity.y += 1
-		animated_sprite.animation = "default"
-	velocity = velocity.normalized() * speed
 	move_and_slide()
 	
 func _process(delta):

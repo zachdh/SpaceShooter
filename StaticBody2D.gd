@@ -5,7 +5,7 @@ extends StaticBody2D
 signal player_fired_laser(laser, position, direction, rotation)
 
 func _ready():
-	self.hide()
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -22,18 +22,10 @@ func _process(delta):
 		self.show_behind_parent = true
 	else:
 		self.show_behind_parent = false
-
-
-func _on_main_scene_on_space_press():
-	self.show()
-	
-func _on_main_scene_on_space_release():
-	self.hide()
 	
 func _unhandled_input(event: InputEvent) -> void:
-	if Input.is_action_pressed("space"):
-		if event.is_action_released("click"):
-			shoot()
+	if event.is_action_released("click"):
+		shoot()
 		
 func shoot():
 	var laser_instance = Laser.instantiate()

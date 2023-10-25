@@ -60,7 +60,7 @@ position = Vector2(0, 64)
 position = Vector2(0, 128)
 
 [node name="MainCharacter" parent="." instance=ExtResource("4_46d3p")]
-position = Vector2(177, 127)
+position = Vector2(164, 129)
 
 [node name="RayGun" parent="MainCharacter" instance=ExtResource("5_d0o1s")]
 position = Vector2(0, 3)
@@ -69,16 +69,16 @@ position = Vector2(0, 3)
 zoom = Vector2(3, 3)
 
 [node name="HealthLabel" type="Label" parent="MainCharacter/Camera2D"]
-offset_left = -189.0
-offset_top = -109.0
-offset_right = -153.0
-offset_bottom = -86.0
+offset_left = -315.0
+offset_top = -171.0
+offset_right = -279.0
+offset_bottom = -148.0
 
 [node name="HealthBar" type="ProgressBar" parent="MainCharacter/Camera2D"]
-offset_left = -115.0
-offset_top = -99.0
-offset_right = -57.0
-offset_bottom = -95.0
+offset_left = -240.0
+offset_top = -161.0
+offset_right = -182.0
+offset_bottom = -157.0
 theme_override_styles/background = SubResource("StyleBoxFlat_ldvpm")
 theme_override_styles/fill = SubResource("StyleBoxFlat_qvxts")
 step = 1.0
@@ -87,18 +87,17 @@ show_percentage = false
 [node name="Aliens" type="CanvasGroup" parent="."]
 
 [node name="AlienEnemy" parent="Aliens" instance=ExtResource("7_xe7dy")]
-position = Vector2(296, 168)
+position = Vector2(389, 223)
 
 [node name="AlienEnemy2" parent="Aliens" instance=ExtResource("7_xe7dy")]
-position = Vector2(296, 8)
+position = Vector2(358, -15)
 
 [node name="AlienEnemy3" parent="Aliens" instance=ExtResource("7_xe7dy")]
-position = Vector2(408, 96)
+position = Vector2(419, 131)
 
 [node name="LaserManager" type="Node2D" parent="."]
 script = ExtResource("5_42yx2")
 
-[connection signal="OnSpacePress" from="." to="MainCharacter" method="_on_main_scene_on_space_press"]
 [connection signal="OnSpacePress" from="." to="MainCharacter/RayGun" method="_on_main_scene_on_space_press"]
 [connection signal="OnSpaceRelease" from="." to="MainCharacter/RayGun" method="_on_main_scene_on_space_release"]
 [connection signal="player_fired_laser" from="MainCharacter/RayGun" to="LaserManager" method="_on_ray_gun_player_fired_laser"]
