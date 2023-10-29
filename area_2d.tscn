@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dur3s4w4c6h6q"]
+
+[ext_resource type="Script" path="res://Area2D.gd" id="1_w2dne"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3rvj1"]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_w2dne")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(-8.45682, 2.27234)
+shape = SubResource("CapsuleShape2D_3rvj1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
