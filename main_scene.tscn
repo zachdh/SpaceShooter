@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://cwpet7perkcis"]
+[gd_scene load_steps=9 format=3 uid="uid://cwpet7perkcis"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_8ugld"]
-[ext_resource type="PackedScene" uid="uid://cu3lcmqschdha" path="res://plutoGrass.tscn" id="2_lt360"]
-[ext_resource type="PackedScene" uid="uid://qospoxm7p11v" path="res://plutoWall.tscn" id="3_r0h5x"]
+[ext_resource type="PackedScene" uid="uid://bog8h8axxrjbo" path="res://nwetilemap.tscn" id="2_hvlbb"]
 [ext_resource type="PackedScene" uid="uid://4fwvkvge6gvg" path="res://character_body_2d.tscn" id="4_46d3p"]
 [ext_resource type="Script" path="res://LaserManager.gd" id="5_42yx2"]
 [ext_resource type="PackedScene" uid="uid://cytsf1twqqjh6" path="res://ray_gun.tscn" id="5_d0o1s"]
@@ -30,34 +29,7 @@ corner_radius_bottom_left = 1
 [node name="Main Scene" type="Node2D"]
 script = ExtResource("1_8ugld")
 
-[node name="Plutograsstilereal[781]" parent="." instance=ExtResource("2_lt360")]
-position = Vector2(224, 128)
-
-[node name="Plutograsstilereal[781]3" parent="." instance=ExtResource("2_lt360")]
-position = Vector2(288, 128)
-
-[node name="Plutograsstilereal[781]6" parent="." instance=ExtResource("2_lt360")]
-position = Vector2(224, 192)
-
-[node name="Plutograsstilereal[781]7" parent="." instance=ExtResource("2_lt360")]
-position = Vector2(288, 192)
-
-[node name="Plutograsstilereal[781]8" parent="." instance=ExtResource("2_lt360")]
-position = Vector2(224, 64)
-
-[node name="Plutograsstilereal[781]9" parent="." instance=ExtResource("2_lt360")]
-position = Vector2(288, 64)
-
-[node name="PlutoWalls" type="CanvasGroup" parent="."]
-position = Vector2(160, 64)
-
-[node name="StaticBody2D2" parent="PlutoWalls" instance=ExtResource("3_r0h5x")]
-position = Vector2(0, 64)
-
-[node name="StaticBody2D" parent="PlutoWalls" instance=ExtResource("3_r0h5x")]
-
-[node name="StaticBody2D3" parent="PlutoWalls" instance=ExtResource("3_r0h5x")]
-position = Vector2(0, 128)
+[node name="TileMap" parent="." instance=ExtResource("2_hvlbb")]
 
 [node name="MainCharacter" parent="." instance=ExtResource("4_46d3p")]
 position = Vector2(164, 129)
@@ -89,12 +61,6 @@ show_percentage = false
 [node name="AlienEnemy" parent="Aliens" instance=ExtResource("7_xe7dy")]
 position = Vector2(389, 223)
 
-[node name="AlienEnemy2" parent="Aliens" instance=ExtResource("7_xe7dy")]
-position = Vector2(358, -15)
-
-[node name="AlienEnemy3" parent="Aliens" instance=ExtResource("7_xe7dy")]
-position = Vector2(419, 131)
-
 [node name="LaserManager" type="Node2D" parent="."]
 script = ExtResource("5_42yx2")
 
@@ -102,5 +68,3 @@ script = ExtResource("5_42yx2")
 [connection signal="OnSpaceRelease" from="." to="MainCharacter/RayGun" method="_on_main_scene_on_space_release"]
 [connection signal="player_fired_laser" from="MainCharacter/RayGun" to="LaserManager" method="_on_ray_gun_player_fired_laser"]
 [connection signal="playerHit" from="Aliens/AlienEnemy" to="MainCharacter" method="_on_alien_enemy_player_hit"]
-[connection signal="playerHit" from="Aliens/AlienEnemy2" to="MainCharacter" method="_on_alien_enemy_player_hit"]
-[connection signal="playerHit" from="Aliens/AlienEnemy3" to="MainCharacter" method="_on_alien_enemy_player_hit"]
