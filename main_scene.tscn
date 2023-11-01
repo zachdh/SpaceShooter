@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwpet7perkcis"]
+[gd_scene load_steps=8 format=3 uid="uid://cwpet7perkcis"]
 
-[ext_resource type="Script" path="res://Main.gd" id="1_8ugld"]
 [ext_resource type="PackedScene" uid="uid://bog8h8axxrjbo" path="res://nwetilemap.tscn" id="2_hvlbb"]
 [ext_resource type="PackedScene" uid="uid://4fwvkvge6gvg" path="res://character_body_2d.tscn" id="4_46d3p"]
 [ext_resource type="Script" path="res://LaserManager.gd" id="5_42yx2"]
@@ -27,7 +26,6 @@ corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
 [node name="Main Scene" type="Node2D"]
-script = ExtResource("1_8ugld")
 
 [node name="TileMap" parent="." instance=ExtResource("2_hvlbb")]
 
@@ -64,7 +62,5 @@ position = Vector2(389, 223)
 [node name="LaserManager" type="Node2D" parent="."]
 script = ExtResource("5_42yx2")
 
-[connection signal="OnSpacePress" from="." to="MainCharacter/RayGun" method="_on_main_scene_on_space_press"]
-[connection signal="OnSpaceRelease" from="." to="MainCharacter/RayGun" method="_on_main_scene_on_space_release"]
 [connection signal="player_fired_laser" from="MainCharacter/RayGun" to="LaserManager" method="_on_ray_gun_player_fired_laser"]
 [connection signal="playerHit" from="Aliens/AlienEnemy" to="MainCharacter" method="_on_alien_enemy_player_hit"]

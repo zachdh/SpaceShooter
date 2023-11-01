@@ -66,8 +66,19 @@ animations = [{
 }]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+texture_filter = 1
 input_pickable = true
 script = ExtResource("1_3qfwn")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(1, 8)
+emission_shape = 4
+emission_points = PackedVector2Array(1, 0, 2, 0, 3, 0, 4, 0, -1, 0, -2, 0, -3, 0, -4, 0)
+emission_colors = PackedColorArray(0, 0.423529, 0.305882, 1)
+gravity = Vector2(0, 0)
+color = Color(0.85098, 0.85098, 0.85098, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jw2en")

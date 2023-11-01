@@ -61,12 +61,25 @@ func update_health_ui():
 	$Camera2D/HealthLabel.text = "Health: %s" % health
 	$Camera2D/HealthBar.value = health
 
-func _on_alien_enemy_player_hit():
+func _on_alien_enemy_player_hit(rotation_angle):
+	var target_position = (pointOnCircle(self.position, 1000, rotation_angle)).normalized()
+	print(target_position)
+	velocity = target_position
+	move_and_slide()
+	
 	health -= 1
 	if health == 0:
 		get_tree().paused = true
 		print("Game Over!")
 	update_health_ui()
+	
+
+func pointOnCircle(center: Vector2, radius: float, angle_degrees: float) -> Vector2:
+	var x = center.x + radius * cos(angle_degrees)
+	var y = center.y + radius * sin(angle_degrees)
+	return Vector2(x, y)
+
+
 
 
 
