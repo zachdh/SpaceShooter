@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://1fmrapc21tuv" path="res://laser.tscn" id="2_nh5hh"]
 
 [node name="RayGun" type="StaticBody2D"]
+texture_filter = 1
 script = ExtResource("1_3852x")
 Laser = ExtResource("2_nh5hh")
 
