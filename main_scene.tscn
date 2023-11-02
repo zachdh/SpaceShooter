@@ -26,6 +26,7 @@ corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
 [node name="Main Scene" type="Node2D"]
+texture_filter = 1
 
 [node name="TileMap" parent="." instance=ExtResource("2_hvlbb")]
 

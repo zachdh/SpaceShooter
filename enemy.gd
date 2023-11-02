@@ -45,8 +45,7 @@ func _on_detection_range_body_entered(body):
 
 func _on_enemy_hitbox_body_entered(body):
 	if body.has_method("hit"):
-		emit_signal("playerHit")
-		print("You have been hit!")
+		emit_signal("playerHit", rotationDir)
 	if body.has_method("shot"):
 		EnemySprite.modulate = "FE3E3E"
 		speed = -25
