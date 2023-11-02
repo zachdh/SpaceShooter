@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://Main.gd" id="1_8ugld"]
 <<<<<<< HEAD
+<<<<<<< HEAD
 [ext_resource type="PackedScene" uid="uid://bog8h8axxrjbo" path="res://nwetilemap.tscn" id="2_xemrc"]
 =======
 [ext_resource type="PackedScene" uid="uid://bog8h8axxrjbo" path="res://nwetilemap.tscn" id="2_hvlbb"]
