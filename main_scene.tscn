@@ -5,6 +5,8 @@
 <<<<<<< HEAD
 [ext_resource type="PackedScene" uid="uid://bog8h8axxrjbo" path="res://nwetilemap.tscn" id="2_xemrc"]
 =======
+=======
+>>>>>>> parent of 4961bc1 (knockback WIP)
 [ext_resource type="PackedScene" uid="uid://bog8h8axxrjbo" path="res://nwetilemap.tscn" id="2_hvlbb"]
 >>>>>>> parent of 4961bc1 (knockback WIP)
 [ext_resource type="PackedScene" uid="uid://4fwvkvge6gvg" path="res://character_body_2d.tscn" id="4_46d3p"]
