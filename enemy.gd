@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-signal playerHit(rotation_angle)
+signal playerHit
 @export var speed : int = 25
 @onready var hit_timer = $HitTimer
 var player_position
@@ -45,7 +45,7 @@ func _on_detection_range_body_entered(body):
 
 func _on_enemy_hitbox_body_entered(body):
 	if body.has_method("hit"):
-		emit_signal("playerHit", rotationDir)
+		emit_signal("playerHit")
 		print("You have been hit!")
 	if body.has_method("shot"):
 		EnemySprite.modulate = "FE3E3E"
