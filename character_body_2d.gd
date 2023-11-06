@@ -4,9 +4,9 @@ extends CharacterBody2D
 var animated_sprite : AnimatedSprite2D
 const MAX_HEALTH = 5
 var health = MAX_HEALTH
+var knockback_direction: Vector2
 @onready var knockback_timer = $KnockbackTimer
-var knockback_status = false
-
+var knockback_status
 
 func _ready():
 	animated_sprite = $AnimatedSprite2D
@@ -16,7 +16,6 @@ func _ready():
 	$Camera2D/HealthBar.max_value = MAX_HEALTH
 
 func movement():
-	velocity = Vector2()
 	if Input.is_action_pressed('left'):
 		velocity.x -= 1
 	if Input.is_action_pressed('right'):
@@ -30,27 +29,30 @@ func movement():
 func _physics_process(_delta):
 	velocity = Vector2()
 	if knockback_status == true:
-		pass
-	elif knockback_status == false:
-		if Global.global_rotation_angle < 0 and Global.global_rotation_angle > (-1*(PI/2)): #Looking UpRight
-			animated_sprite.animation = "AstronautWalkingUP"
-			animated_sprite.flip_h = false
-			movement()
-		elif Global.global_rotation_angle < (-1*(PI/2)) and Global.global_rotation_angle > -1*PI: #Looking UpLeft
-			animated_sprite.animation = "AstronautWalkingUP"
-			animated_sprite.flip_h = true
-			movement()
-		elif Global.global_rotation_angle > 0 and Global.global_rotation_angle < PI/2: #Looking DownRight
-			animated_sprite.animation = "default"
-			animated_sprite.flip_h = false
-			movement()
-		elif Global.global_rotation_angle > PI/2 and Global.global_rotation_angle < PI: #Looking DownLeft
-			animated_sprite.animation = "default"
-			animated_sprite.flip_h = true
-			movement()
+		print('knockback')
+		print(knockback_direction)
+		velocity = knockback_direction * speed
+		move_and_slide()
+		_on_knockback_timer_timeout()
+	elif Global.global_rotation_angle < 0 and Global.global_rotation_angle > (-1*(PI/2)): #Looking UpRight
+		animated_sprite.animation = "AstronautWalkingUP"
+		animated_sprite.flip_h = false
+		movement()
+	elif Global.global_rotation_angle < (-1*(PI/2)) and Global.global_rotation_angle > -1*PI: #Looking UpLeft
+		animated_sprite.animation = "AstronautWalkingUP"
+		animated_sprite.flip_h = true
+		movement()
+	elif Global.global_rotation_angle > 0 and Global.global_rotation_angle < PI/2: #Looking DownRight
+		animated_sprite.animation = "default"
+		animated_sprite.flip_h = false
+		movement()
+	elif Global.global_rotation_angle > PI/2 and Global.global_rotation_angle < PI: #Looking DownLeft
+		animated_sprite.animation = "default"
+		animated_sprite.flip_h = true
+		movement()
 	move_and_slide()
 	
-func _process(delta):
+func _process(_delta):
 	if velocity.length() > 0:
 		animated_sprite.play()
 	else:
@@ -68,15 +70,12 @@ func update_health_ui():
 
 func _on_alien_enemy_player_hit(rotation_angle):
 	print("you have been hit")
-	var target_position = (pointOnCircle(self.global_position, 50, rotation_angle) - self.global_position).normalized()
+	knockback_direction = (pointOnCircle(self.global_position, 250, rotation_angle)- self.global_position).normalized()
 	knockback_status = true
-	velocity = target_position * speed
-	move_and_slide()
-	print(target_position)
-	_on_knockback_timer_timeout()
 	health -= 1
 	if health == 0:
-		get_tree().paused = true
+		health = MAX_HEALTH
+		#get_tree().paused = true
 		print("Game Over!")
 	update_health_ui()
 
