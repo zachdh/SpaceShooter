@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://StaticBody2D.gd" id="1_3852x"]
 [ext_resource type="Texture2D" uid="uid://ctxheopvormyr" path="res://Assets/Ray Gun.png" id="1_xprjh"]
-[ext_resource type="PackedScene" uid="uid://1fmrapc21tuv" path="res://Laser.tscn" id="2_nh5hh"]
+[ext_resource type="PackedScene" uid="uid://1fmrapc21tuv" path="res://laser.tscn" id="2_nh5hh"]
 
 [node name="RayGun" type="StaticBody2D"]
 texture_filter = 1

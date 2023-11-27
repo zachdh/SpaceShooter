@@ -81,4 +81,6 @@ polygon = PackedVector2Array(-2, 8, 2, 8, 6, 7, 7, 0, 7, -6, 6, -7, 3, -9, -1, -
 [node name="KnockbackTimer" type="Timer" parent="."]
 wait_time = 2.28
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+
 [connection signal="timeout" from="KnockbackTimer" to="." method="_on_knockback_timer_timeout"]

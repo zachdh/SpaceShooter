@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 signal playerHit
-@export var speed : int = 1
+@export var speed : int = 25
 @onready var hit_timer = $HitTimer
 var player_position
 var target_position
