@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cwpet7perkcis"]
 
-[ext_resource type="PackedScene" uid="uid://bog8h8axxrjbo" path="res://nwetilemap.tscn" id="2_hvlbb"]
+[ext_resource type="PackedScene" uid="uid://v40cgll2ien8" path="res://prototype.tscn" id="1_sncv3"]
 [ext_resource type="PackedScene" uid="uid://4fwvkvge6gvg" path="res://character_body_2d.tscn" id="4_46d3p"]
 [ext_resource type="Script" path="res://LaserManager.gd" id="5_42yx2"]
 [ext_resource type="PackedScene" uid="uid://cytsf1twqqjh6" path="res://ray_gun.tscn" id="5_d0o1s"]
@@ -28,10 +28,10 @@ corner_radius_bottom_left = 1
 [node name="Main Scene" type="Node2D"]
 texture_filter = 1
 
-[node name="TileMap" parent="." instance=ExtResource("2_hvlbb")]
+[node name="TileMap" parent="." instance=ExtResource("1_sncv3")]
 
 [node name="MainCharacter" parent="." instance=ExtResource("4_46d3p")]
-position = Vector2(164, 129)
+position = Vector2(-290, 178)
 
 [node name="RayGun" parent="MainCharacter" instance=ExtResource("5_d0o1s")]
 position = Vector2(0, 3)
@@ -58,7 +58,7 @@ show_percentage = false
 [node name="Aliens" type="CanvasGroup" parent="."]
 
 [node name="AlienEnemy" parent="Aliens" instance=ExtResource("7_xe7dy")]
-position = Vector2(389, 223)
+position = Vector2(294, 23)
 
 [node name="LaserManager" type="Node2D" parent="."]
 script = ExtResource("5_42yx2")

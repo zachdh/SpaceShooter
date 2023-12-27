@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed : int = 115
+@export var speed : int = 80
 var animated_sprite : AnimatedSprite2D
 const MAX_HEALTH = 5
 var health = MAX_HEALTH
