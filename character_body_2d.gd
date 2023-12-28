@@ -4,14 +4,13 @@ extends CharacterBody2D
 var animated_sprite : AnimatedSprite2D
 const MAX_HEALTH = 5
 var health = MAX_HEALTH
-var knockback_direction: Vector2
-@onready var knockback_timer = $KnockbackTimer
-var knockback_status
+var currentCamera
 
 func _ready():
 	animated_sprite = $AnimatedSprite2D
 	animated_sprite.animation = "default"
 	Global.global_character_position = self.position
+	currentCamera = $"../Camera2D"
 #	update_health_ui()
 #	$Camera2D/HealthBar.max_value = MAX_HEALTH
 
@@ -70,28 +69,12 @@ func _on_alien_enemy_player_hit(rotation_angle):
 		print("Game Over!")
 #	update_health_ui()
 
-func _on_camera_detector_1_body_exited(body):
+func _on_transition_1_body_exited(body):
 	if body == self:
-		$"../CameraTransitions/Barrier1/CollisionShape2D".set_deferred("disabled", false)
-		var tween_position = create_tween()
-		var tween_zoom = create_tween()
-		tween_position.tween_property($"../Camera2D", "position", Vector2(197,60), 1)
-		tween_zoom.tween_property($"../Camera2D", "zoom", Vector2(5,5), 1)
+		if currentCamera == $"../Camera2D":
+			currentCamera = $"../Camera2D2"
+			$"../Camera2D2".make_current()
+		elif currentCamera == $"../Camera2D2":
+			currentCamera = $"../Camera2D"
+			$"../Camera2D".make_current()
 
-func _on_camera_detector_2_body_exited(body):
-	if body == self:
-		$"../CameraTransitions/Barrier2/CollisionShape2D".set_deferred("disabled", false)
-		var tween_position = create_tween()
-		var tween_zoom = create_tween()
-		tween_position.tween_property($"../Camera2D", "position", Vector2(200,-24), 1)
-		tween_zoom.tween_property($"../Camera2D", "zoom", Vector2(6,5.8), 1)
-		
-func _on_camera_detector_3_body_shape_exited(body_rid, body, body_shape_index, local_shape_index):
-	if body == self:
-		$"../CameraTransitions/Barrier3/CollisionShape2D".set_deferred("disabled", false)
-		var tween_position = create_tween()
-		var tween_zoom = create_tween()
-		tween_position.tween_property($"../Camera2D", "position", Vector2(424,2), 1)
-		tween_zoom.tween_property($"../Camera2D", "zoom", Vector2(6,6), 1)
-		$"../Camera2D2".make_current()
-		
