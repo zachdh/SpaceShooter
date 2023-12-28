@@ -12,8 +12,8 @@ func _ready():
 	animated_sprite = $AnimatedSprite2D
 	animated_sprite.animation = "default"
 	Global.global_character_position = self.position
-	update_health_ui()
-	$Camera2D/HealthBar.max_value = MAX_HEALTH
+#	update_health_ui()
+#	$Camera2D/HealthBar.max_value = MAX_HEALTH
 
 func movement():
 	if Input.is_action_pressed('left'):
@@ -28,13 +28,7 @@ func movement():
 	
 func _physics_process(_delta):
 	velocity = Vector2()
-	if knockback_status == true:
-		print('knockback')
-		print(knockback_direction)
-		velocity = knockback_direction * speed
-		move_and_slide()
-		_on_knockback_timer_timeout()
-	elif Global.global_rotation_angle < 0 and Global.global_rotation_angle > (-1*(PI/2)): #Looking UpRight
+	if Global.global_rotation_angle < 0 and Global.global_rotation_angle > (-1*(PI/2)): #Looking UpRight
 		animated_sprite.animation = "AstronautWalkingUP"
 		animated_sprite.flip_h = false
 		movement()
@@ -64,25 +58,31 @@ func chase():
 func hit():
 	pass
 
-func update_health_ui():
-	$Camera2D/HealthLabel.text = "Health: %s" % health
-	$Camera2D/HealthBar.value = health
+#func update_health_ui():
+#	$Camera2D/HealthLabel.text = "Health: %s" % health
+#	$Camera2D/HealthBar.value = health
 
 func _on_alien_enemy_player_hit(rotation_angle):
-	print("you have been hit")
-	knockback_direction = (pointOnCircle(self.global_position, 250, rotation_angle)- self.global_position).normalized()
-	knockback_status = true
 	health -= 1
 	if health == 0:
 		health = MAX_HEALTH
 		#get_tree().paused = true
 		print("Game Over!")
-	update_health_ui()
+#	update_health_ui()
 
-func pointOnCircle(center: Vector2, radius: float, angle_degrees: float) -> Vector2:
-	var x = center.x + radius * cos(angle_degrees)
-	var y = center.y + radius * sin(angle_degrees)
-	return Vector2(x, y)
+func _on_camera_detector_1_body_exited(body):
+	if body == self:
+		$"../Barrier1/CollisionShape2D".set_deferred("disabled", false)
+		var tween_position = create_tween()
+		var tween_zoom = create_tween()
+		tween_position.tween_property($"../Camera2D", "position", Vector2(197,60), 1)
+		tween_zoom.tween_property($"../Camera2D", "zoom", Vector2(5,5), 1)
 
-func _on_knockback_timer_timeout():
-	knockback_status = false
+func _on_camera_detector_2_body_exited(body):
+	if body == self:
+		$"../Barrier2/CollisionShape2D".set_deferred("disabled", false)
+		var tween_position = create_tween()
+		var tween_zoom = create_tween()
+		tween_position.tween_property($"../Camera2D", "position", Vector2(200,-24), 1)
+		tween_zoom.tween_property($"../Camera2D", "zoom", Vector2(6,5.8), 1)
+

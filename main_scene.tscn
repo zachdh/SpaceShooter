@@ -1,10 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwpet7perkcis"]
+[gd_scene load_steps=13 format=3 uid="uid://cwpet7perkcis"]
 
 [ext_resource type="PackedScene" uid="uid://v40cgll2ien8" path="res://prototype.tscn" id="1_sncv3"]
 [ext_resource type="PackedScene" uid="uid://4fwvkvge6gvg" path="res://character_body_2d.tscn" id="4_46d3p"]
 [ext_resource type="Script" path="res://LaserManager.gd" id="5_42yx2"]
 [ext_resource type="PackedScene" uid="uid://cytsf1twqqjh6" path="res://ray_gun.tscn" id="5_d0o1s"]
 [ext_resource type="PackedScene" uid="uid://dkofefela1ssr" path="res://alien_enemy.tscn" id="7_xe7dy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gyx6h"]
+size = Vector2(6, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_alw86"]
+size = Vector2(2.25, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2tkw1"]
+size = Vector2(32, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i5ajp"]
+size = Vector2(32, 4)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ldvpm"]
 bg_color = Color(0.196078, 0.196078, 0.196078, 1)
@@ -25,43 +37,81 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_b6wtg"]
+polygon = PackedVector2Array(-304, -56, 79, -56, 81, 49, 176, 48, 176, 32, 105, 31, 105, -79, 295, -80, 296, -48, 329, -47, 328, -168, 104, -168, 102, -104, -231, -105, -230, -368, 102, -368, 102, -192, 329, -194, 329, -230, 511, -230, 511, 55, 324, 54, 327, -15, 296, -16, 295, 32, 207, 32, 208, 48, 311, 48, 311, 103, 78, 104, 79, 159, -304, 159)
+
 [node name="Main Scene" type="Node2D"]
 texture_filter = 1
 
 [node name="TileMap" parent="." instance=ExtResource("1_sncv3")]
 
+[node name="Barrier1" type="StaticBody2D" parent="."]
+position = Vector2(77, 76)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Barrier1"]
+shape = SubResource("RectangleShape2D_gyx6h")
+disabled = true
+
+[node name="CameraDetector1" type="Area2D" parent="."]
+position = Vector2(88, 76)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraDetector1"]
+shape = SubResource("RectangleShape2D_alw86")
+
+[node name="CameraDetector2" type="Area2D" parent="."]
+position = Vector2(192, 30)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraDetector2"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_2tkw1")
+
+[node name="Barrier2" type="StaticBody2D" parent="."]
+position = Vector2(192, 39)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Barrier2"]
+shape = SubResource("RectangleShape2D_i5ajp")
+disabled = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-112, 52)
+zoom = Vector2(3, 3)
+
 [node name="MainCharacter" parent="." instance=ExtResource("4_46d3p")]
-position = Vector2(-290, 178)
+position = Vector2(-274, 75)
 
 [node name="RayGun" parent="MainCharacter" instance=ExtResource("5_d0o1s")]
 position = Vector2(0, 3)
 
-[node name="Camera2D" type="Camera2D" parent="MainCharacter"]
-zoom = Vector2(3, 3)
+[node name="Aliens" type="CanvasGroup" parent="."]
 
-[node name="HealthLabel" type="Label" parent="MainCharacter/Camera2D"]
-offset_left = -315.0
-offset_top = -171.0
-offset_right = -279.0
-offset_bottom = -148.0
+[node name="AlienEnemy" parent="Aliens" instance=ExtResource("7_xe7dy")]
+position = Vector2(497, -88)
 
-[node name="HealthBar" type="ProgressBar" parent="MainCharacter/Camera2D"]
-offset_left = -240.0
-offset_top = -161.0
-offset_right = -182.0
-offset_bottom = -157.0
+[node name="LaserManager" type="Node2D" parent="."]
+script = ExtResource("5_42yx2")
+
+[node name="HealthLabel" type="Label" parent="."]
+offset_left = -427.0
+offset_top = -118.0
+offset_right = -391.0
+offset_bottom = -95.0
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -352.0
+offset_top = -108.0
+offset_right = -294.0
+offset_bottom = -104.0
 theme_override_styles/background = SubResource("StyleBoxFlat_ldvpm")
 theme_override_styles/fill = SubResource("StyleBoxFlat_qvxts")
 step = 1.0
 show_percentage = false
 
-[node name="Aliens" type="CanvasGroup" parent="."]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_b6wtg")
 
-[node name="AlienEnemy" parent="Aliens" instance=ExtResource("7_xe7dy")]
-position = Vector2(294, 23)
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 
-[node name="LaserManager" type="Node2D" parent="."]
-script = ExtResource("5_42yx2")
-
+[connection signal="body_exited" from="CameraDetector1" to="MainCharacter" method="_on_camera_detector_1_body_exited"]
+[connection signal="body_exited" from="CameraDetector2" to="MainCharacter" method="_on_camera_detector_2_body_exited"]
 [connection signal="player_fired_laser" from="MainCharacter/RayGun" to="LaserManager" method="_on_ray_gun_player_fired_laser"]
 [connection signal="playerHit" from="Aliens/AlienEnemy" to="MainCharacter" method="_on_alien_enemy_player_hit"]
