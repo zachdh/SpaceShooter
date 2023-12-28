@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://4fwvkvge6gvg"]
+[gd_scene load_steps=16 format=3 uid="uid://4fwvkvge6gvg"]
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_3qfwn"]
 [ext_resource type="Texture2D" uid="uid://cbi2sqbk807gl" path="res://Assets/AstronautUP/Astronaut (Animation2 - F0).png" id="2_fnipk"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cyk0nxnhyei7n" path="res://Assets/AstronautDOWN/Astronaut (Animation - F3).png" id="10_6usgv"]
 [ext_resource type="Texture2D" uid="uid://cflmaga1rl3py" path="res://Assets/AstronautDOWN/Astronaut (Animation - F2).png" id="11_xk28v"]
 [ext_resource type="Texture2D" uid="uid://dcyx8b5xaleyr" path="res://Assets/AstronautDOWN/Astronaut (Animation - F5).png" id="12_knvt2"]
+[ext_resource type="Texture2D" uid="uid://dhowpr5nyiula" path="res://Assets/circle_light_texture.png" id="13_mfnf8"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_m6cpc"]
 load_path = "res://.godot/imported/Astronaut (Animation - F4).png-f4de2724a76cf6b5ff7bbe9c50dd0512.ctex"
@@ -78,7 +79,9 @@ speed_scale = 1.25
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-2, 8, 2, 8, 6, 7, 7, 0, 7, -6, 6, -7, 3, -9, -1, -9, -5, -5, -5, 7)
 
-[node name="KnockbackTimer" type="Timer" parent="."]
-wait_time = 2.28
-
-[connection signal="timeout" from="KnockbackTimer" to="." method="_on_knockback_timer_timeout"]
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.6, 0.6)
+color = Color(0.835294, 0.890196, 0.988235, 1)
+shadow_enabled = true
+shadow_filter = 1
+texture = ExtResource("13_mfnf8")

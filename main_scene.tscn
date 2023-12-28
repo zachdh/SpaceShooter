@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cwpet7perkcis"]
+[gd_scene load_steps=14 format=3 uid="uid://cwpet7perkcis"]
 
 [ext_resource type="PackedScene" uid="uid://v40cgll2ien8" path="res://prototype.tscn" id="1_sncv3"]
 [ext_resource type="Texture2D" uid="uid://dhowpr5nyiula" path="res://Assets/circle_light_texture.png" id="2_xnu1w"]
@@ -53,25 +53,8 @@ _data = {
 "Siren": SubResource("Animation_a6vum")
 }
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_s4ebu"]
-polygon = PackedVector2Array(9, 105, 9, 89, 25, 89, 25, 71, -17, 71, -17, 79, -25, 79, -25, 87, -33, 87, -33, 105)
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7qn3h"]
-polygon = PackedVector2Array(-113, -33, -39, -33, -39, -25, -23, -25, -23, -9, -1, -9, -1, -17, 57, -17, 57, 17, 49, 17, 49, 25, -17, 25, -17, 17, -33, 17, -33, 9, -41, 9, -41, -7, -49, -7, -49, -15, -113, -15)
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_l0t63"]
-closed = false
-polygon = PackedVector2Array(-231, -55, 78, -54, 79, 25, 273, 25, 273, 15, 225, 15, 225, -9, 217, -9, 217, -17, 201, -17, 201, -33, 185, -33, 185, -87, 201, -87, 201, -119, 233, -119, 233, -127, 249, -127, 249, -143, 351, -143, 351, -135, 423, -135, 423, -111, 463, -111, 463, -87, 487, -87, 487, -57, 463, -57, 463, -9, 375, -9, 375, 7, 327, 7, 327, 25, 407, 25, 407, 33, 415, 33, 415, 41, 423, 41, 423, 55, 407, 55, 407, 63, 399, 63, 399, 71, 79, 71, 79, 159, -175, 159, -175, 135, -183, 135, -183, 127, -191, 127, -191, 119, -207, 119, -207, 103, -303, 103, -303, 17, -281, 17, -281, 25, -273, 25, -273, 41, -257, 41, -257, 49, -223, 49, -223, 41, -207, 41, -207, 25, -199, 25, -199, -9, -207, -9, -207, -25, -215, -25, -215, -33, -231, -33, -231, -55)
-
 [node name="Main Scene" type="Node2D"]
 texture_filter = 1
-
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -567.0
-offset_top = -532.0
-offset_right = 682.0
-offset_bottom = 488.0
-color = Color(0.196078, 0.196078, 0.196078, 1)
 
 [node name="TileMap" parent="." instance=ExtResource("1_sncv3")]
 
@@ -94,14 +77,6 @@ zoom = Vector2(3, 3)
 
 [node name="MainCharacter" parent="." instance=ExtResource("4_46d3p")]
 position = Vector2(-159, 60)
-
-[node name="PointLight2D" type="PointLight2D" parent="MainCharacter"]
-scale = Vector2(0.6, 0.6)
-color = Color(0.835294, 0.890196, 0.988235, 1)
-energy = 0.5
-shadow_enabled = true
-shadow_filter = 1
-texture = ExtResource("2_xnu1w")
 
 [node name="RayGun" parent="MainCharacter" instance=ExtResource("5_d0o1s")]
 position = Vector2(0, 3)
@@ -156,21 +131,6 @@ autoplay = "Siren"
 libraries = {
 "": SubResource("AnimationLibrary_yw4hx")
 }
-
-[node name="Shadows" type="CanvasGroup" parent="."]
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Shadows"]
-occluder = SubResource("OccluderPolygon2D_s4ebu")
-
-[node name="LightOccluder2D2" type="LightOccluder2D" parent="Shadows"]
-occluder = SubResource("OccluderPolygon2D_7qn3h")
-
-[node name="LightOccluder2D3" type="LightOccluder2D" parent="Shadows"]
-occluder = SubResource("OccluderPolygon2D_l0t63")
-
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-position = Vector2(424, 2)
-color = Color(0, 0, 0, 1)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(-247, 11)
