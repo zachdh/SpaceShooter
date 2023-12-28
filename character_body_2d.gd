@@ -72,7 +72,7 @@ func _on_alien_enemy_player_hit(rotation_angle):
 
 func _on_camera_detector_1_body_exited(body):
 	if body == self:
-		$"../Barrier1/CollisionShape2D".set_deferred("disabled", false)
+		$"../CameraTransitions/Barrier1/CollisionShape2D".set_deferred("disabled", false)
 		var tween_position = create_tween()
 		var tween_zoom = create_tween()
 		tween_position.tween_property($"../Camera2D", "position", Vector2(197,60), 1)
@@ -80,9 +80,18 @@ func _on_camera_detector_1_body_exited(body):
 
 func _on_camera_detector_2_body_exited(body):
 	if body == self:
-		$"../Barrier2/CollisionShape2D".set_deferred("disabled", false)
+		$"../CameraTransitions/Barrier2/CollisionShape2D".set_deferred("disabled", false)
 		var tween_position = create_tween()
 		var tween_zoom = create_tween()
 		tween_position.tween_property($"../Camera2D", "position", Vector2(200,-24), 1)
 		tween_zoom.tween_property($"../Camera2D", "zoom", Vector2(6,5.8), 1)
-
+		
+func _on_camera_detector_3_body_shape_exited(body_rid, body, body_shape_index, local_shape_index):
+	if body == self:
+		$"../CameraTransitions/Barrier3/CollisionShape2D".set_deferred("disabled", false)
+		var tween_position = create_tween()
+		var tween_zoom = create_tween()
+		tween_position.tween_property($"../Camera2D", "position", Vector2(424,2), 1)
+		tween_zoom.tween_property($"../Camera2D", "zoom", Vector2(6,6), 1)
+		$"../Camera2D2".make_current()
+		

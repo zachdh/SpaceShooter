@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://cwpet7perkcis"]
+[gd_scene load_steps=18 format=3 uid="uid://cwpet7perkcis"]
 
 [ext_resource type="PackedScene" uid="uid://v40cgll2ien8" path="res://prototype.tscn" id="1_sncv3"]
+[ext_resource type="Texture2D" uid="uid://dhowpr5nyiula" path="res://Assets/circle_light_texture.png" id="2_xnu1w"]
 [ext_resource type="PackedScene" uid="uid://4fwvkvge6gvg" path="res://character_body_2d.tscn" id="4_46d3p"]
 [ext_resource type="Script" path="res://LaserManager.gd" id="5_42yx2"]
 [ext_resource type="PackedScene" uid="uid://cytsf1twqqjh6" path="res://ray_gun.tscn" id="5_d0o1s"]
@@ -12,11 +13,17 @@ size = Vector2(6, 56)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_alw86"]
 size = Vector2(2.25, 56)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i5ajp"]
+size = Vector2(32, 4)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2tkw1"]
 size = Vector2(32, 2)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i5ajp"]
-size = Vector2(32, 4)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7uxw2"]
+size = Vector2(6, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nvul1"]
+size = Vector2(2, 32)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ldvpm"]
 bg_color = Color(0.196078, 0.196078, 0.196078, 1)
@@ -37,57 +44,90 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_b6wtg"]
-polygon = PackedVector2Array(-304, -56, 79, -56, 81, 49, 176, 48, 176, 32, 105, 31, 105, -79, 295, -80, 296, -48, 329, -47, 328, -168, 104, -168, 102, -104, -231, -105, -230, -368, 102, -368, 102, -192, 329, -194, 329, -230, 511, -230, 511, 55, 324, 54, 327, -15, 296, -16, 295, 32, 207, 32, 208, 48, 311, 48, 311, 103, 78, 104, 79, 159, -304, 159)
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_o6hkf"]
+polygon = PackedVector2Array(17, 28, 17, 46, 25, 46, 25, 54, 33, 54, 33, 62, 65, 62, 91, 62, 91, 52, 83, 52, 83, 44, 67, 44, 67, 28)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_s4ebu"]
+polygon = PackedVector2Array(9, 105, 9, 89, 25, 89, 25, 71, -17, 71, -17, 79, -25, 79, -25, 87, -33, 87, -33, 105)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7qn3h"]
+polygon = PackedVector2Array(-113, -33, -39, -33, -39, -25, -23, -25, -23, -9, -1, -9, -1, -17, 57, -17, 57, 17, 49, 17, 49, 25, -17, 25, -17, 17, -33, 17, -33, 9, -41, 9, -41, -7, -49, -7, -49, -15, -113, -15)
 
 [node name="Main Scene" type="Node2D"]
 texture_filter = 1
 
 [node name="TileMap" parent="." instance=ExtResource("1_sncv3")]
 
-[node name="Barrier1" type="StaticBody2D" parent="."]
+[node name="CameraTransitions" type="CanvasGroup" parent="."]
+
+[node name="Barrier1" type="StaticBody2D" parent="CameraTransitions"]
 position = Vector2(77, 76)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Barrier1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraTransitions/Barrier1"]
 shape = SubResource("RectangleShape2D_gyx6h")
 disabled = true
 
-[node name="CameraDetector1" type="Area2D" parent="."]
+[node name="CameraDetector1" type="Area2D" parent="CameraTransitions"]
 position = Vector2(88, 76)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraDetector1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraTransitions/CameraDetector1"]
 shape = SubResource("RectangleShape2D_alw86")
 
-[node name="CameraDetector2" type="Area2D" parent="."]
+[node name="Barrier2" type="StaticBody2D" parent="CameraTransitions"]
+position = Vector2(192, 39)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraTransitions/Barrier2"]
+shape = SubResource("RectangleShape2D_i5ajp")
+disabled = true
+
+[node name="CameraDetector2" type="Area2D" parent="CameraTransitions"]
 position = Vector2(192, 30)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraDetector2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraTransitions/CameraDetector2"]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_2tkw1")
 
-[node name="Barrier2" type="StaticBody2D" parent="."]
-position = Vector2(192, 39)
+[node name="Barrier3" type="StaticBody2D" parent="CameraTransitions"]
+position = Vector2(320, -32)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Barrier2"]
-shape = SubResource("RectangleShape2D_i5ajp")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraTransitions/Barrier3"]
+shape = SubResource("RectangleShape2D_7uxw2")
 disabled = true
+
+[node name="CameraDetector3" type="Area2D" parent="CameraTransitions"]
+position = Vector2(329, -32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraTransitions/CameraDetector3"]
+shape = SubResource("RectangleShape2D_nvul1")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-112, 52)
 zoom = Vector2(3, 3)
 
+[node name="Camera2D2" type="Camera2D" parent="."]
+position = Vector2(424, 2)
+zoom = Vector2(6, 6)
+
 [node name="MainCharacter" parent="." instance=ExtResource("4_46d3p")]
-position = Vector2(-274, 75)
+position = Vector2(53, 78)
+
+[node name="PointLight2D" type="PointLight2D" parent="MainCharacter"]
+color = Color(0.835294, 0.890196, 0.988235, 1)
+energy = 0.5
+shadow_enabled = true
+texture = ExtResource("2_xnu1w")
 
 [node name="RayGun" parent="MainCharacter" instance=ExtResource("5_d0o1s")]
 position = Vector2(0, 3)
 
 [node name="Aliens" type="CanvasGroup" parent="."]
+position = Vector2(-332, -47)
 
 [node name="AlienEnemy" parent="Aliens" instance=ExtResource("7_xe7dy")]
-position = Vector2(497, -88)
+position = Vector2(-204, 60)
 
 [node name="LaserManager" type="Node2D" parent="."]
+position = Vector2(-332, -51)
 script = ExtResource("5_42yx2")
 
 [node name="HealthLabel" type="Label" parent="."]
@@ -106,12 +146,21 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_qvxts")
 step = 1.0
 show_percentage = false
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-occluder = SubResource("OccluderPolygon2D_b6wtg")
+[node name="Shadows" type="CanvasGroup" parent="."]
+visible = false
 
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Shadows"]
+position = Vector2(-274, 75)
+occluder = SubResource("OccluderPolygon2D_o6hkf")
 
-[connection signal="body_exited" from="CameraDetector1" to="MainCharacter" method="_on_camera_detector_1_body_exited"]
-[connection signal="body_exited" from="CameraDetector2" to="MainCharacter" method="_on_camera_detector_2_body_exited"]
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="Shadows"]
+occluder = SubResource("OccluderPolygon2D_s4ebu")
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="Shadows"]
+occluder = SubResource("OccluderPolygon2D_7qn3h")
+
+[connection signal="body_exited" from="CameraTransitions/CameraDetector1" to="MainCharacter" method="_on_camera_detector_1_body_exited"]
+[connection signal="body_exited" from="CameraTransitions/CameraDetector2" to="MainCharacter" method="_on_camera_detector_2_body_exited"]
+[connection signal="body_shape_exited" from="CameraTransitions/CameraDetector3" to="MainCharacter" method="_on_camera_detector_3_body_shape_exited"]
 [connection signal="player_fired_laser" from="MainCharacter/RayGun" to="LaserManager" method="_on_ray_gun_player_fired_laser"]
 [connection signal="playerHit" from="Aliens/AlienEnemy" to="MainCharacter" method="_on_alien_enemy_player_hit"]
