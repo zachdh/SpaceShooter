@@ -11,8 +11,8 @@ func _ready():
 	animated_sprite.animation = "default"
 	Global.global_character_position = self.position
 	currentCamera = $"../Camera2D"
-#	update_health_ui()
-#	$Camera2D/HealthBar.max_value = MAX_HEALTH
+	update_health_ui()
+	$Camera2D/HealthBar.max_value = MAX_HEALTH
 
 func movement():
 	if Input.is_action_pressed('left'):
@@ -57,24 +57,13 @@ func chase():
 func hit():
 	pass
 
-#func update_health_ui():
-#	$Camera2D/HealthLabel.text = "Health: %s" % health
-#	$Camera2D/HealthBar.value = health
+func update_health_ui():
+	$Camera2D/HealthBar.value = health
 
 func _on_alien_enemy_player_hit(rotation_angle):
 	health -= 1
 	if health == 0:
 		health = MAX_HEALTH
-		#get_tree().paused = true
+		get_tree().paused = true
 		print("Game Over!")
-#	update_health_ui()
-
-func _on_transition_1_body_exited(body):
-	if body == self:
-		if currentCamera == $"../Camera2D":
-			currentCamera = $"../Camera2D2"
-			$"../Camera2D2".make_current()
-		elif currentCamera == $"../Camera2D2":
-			currentCamera = $"../Camera2D"
-			$"../Camera2D".make_current()
-
+	update_health_ui()

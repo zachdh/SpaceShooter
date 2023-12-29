@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cwpet7perkcis"]
+[gd_scene load_steps=13 format=3 uid="uid://cwpet7perkcis"]
 
 [ext_resource type="PackedScene" uid="uid://v40cgll2ien8" path="res://prototype.tscn" id="1_sncv3"]
 [ext_resource type="Texture2D" uid="uid://dhowpr5nyiula" path="res://Assets/circle_light_texture.png" id="2_xnu1w"]
@@ -8,9 +8,6 @@
 [ext_resource type="Script" path="res://PointLight2D.gd" id="7_s7t0r"]
 [ext_resource type="PackedScene" uid="uid://dkofefela1ssr" path="res://alien_enemy.tscn" id="7_xe7dy"]
 [ext_resource type="AudioStream" uid="uid://4mfioqp5oan4" path="res://Assets/emergency-alarm-with-reverb-29431.mp3" id="8_tf1cc"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mwbq1"]
-size = Vector2(0, 48)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ldvpm"]
 bg_color = Color(0.196078, 0.196078, 0.196078, 1)
@@ -58,56 +55,35 @@ texture_filter = 1
 
 [node name="TileMap" parent="." instance=ExtResource("1_sncv3")]
 
-[node name="CameraTransitions" type="CanvasGroup" parent="."]
-
-[node name="Transition1" type="Area2D" parent="CameraTransitions"]
-position = Vector2(80, 48)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraTransitions/Transition1"]
-shape = SubResource("RectangleShape2D_mwbq1")
-debug_color = Color(0.827451, 0.203922, 0.831373, 0.419608)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-112, 52)
-zoom = Vector2(3, 3)
-
-[node name="Camera2D2" type="Camera2D" parent="."]
-position = Vector2(272, -36)
-zoom = Vector2(3, 3)
-
 [node name="MainCharacter" parent="." instance=ExtResource("4_46d3p")]
-position = Vector2(-159, 60)
+position = Vector2(223, 154)
 
-[node name="RayGun" parent="MainCharacter" instance=ExtResource("5_d0o1s")]
-position = Vector2(0, 3)
+[node name="Camera2D" type="Camera2D" parent="MainCharacter"]
+zoom = Vector2(2.5, 2.5)
 
-[node name="Aliens" type="CanvasGroup" parent="."]
-position = Vector2(-332, -47)
-
-[node name="AlienEnemy" parent="Aliens" instance=ExtResource("7_xe7dy")]
-position = Vector2(-204, 60)
-
-[node name="LaserManager" type="Node2D" parent="."]
-script = ExtResource("5_42yx2")
-
-[node name="HealthLabel" type="Label" parent="."]
-offset_left = -427.0
-offset_top = -118.0
-offset_right = -391.0
-offset_bottom = -95.0
-
-[node name="HealthBar" type="ProgressBar" parent="."]
-offset_left = -352.0
-offset_top = -108.0
-offset_right = -294.0
-offset_bottom = -104.0
+[node name="HealthBar" type="ProgressBar" parent="MainCharacter/Camera2D"]
+offset_left = -224.0
+offset_top = -123.0
+offset_right = -166.0
+offset_bottom = -119.0
 theme_override_styles/background = SubResource("StyleBoxFlat_ldvpm")
 theme_override_styles/fill = SubResource("StyleBoxFlat_qvxts")
 step = 1.0
 show_percentage = false
 
+[node name="RayGun" parent="MainCharacter" instance=ExtResource("5_d0o1s")]
+position = Vector2(0, 3)
+
+[node name="Aliens" type="CanvasGroup" parent="."]
+
+[node name="AlienEnemy" parent="Aliens" instance=ExtResource("7_xe7dy")]
+position = Vector2(-712, -36)
+
+[node name="LaserManager" type="Node2D" parent="."]
+script = ExtResource("5_42yx2")
+
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(-222, -49)
+position = Vector2(38, 70)
 scale = Vector2(0.5, 0.5)
 color = Color(0.776471, 0, 0.121569, 1)
 texture = ExtResource("2_xnu1w")
@@ -120,7 +96,7 @@ libraries = {
 }
 
 [node name="PointLight2D2" type="PointLight2D" parent="."]
-position = Vector2(-283, 23)
+position = Vector2(426, 69)
 scale = Vector2(0.5, 0.5)
 color = Color(0.776471, 0, 0.121569, 1)
 texture = ExtResource("2_xnu1w")
@@ -139,6 +115,5 @@ volume_db = -15.0
 max_distance = 1000.0
 attenuation = 2.0
 
-[connection signal="body_exited" from="CameraTransitions/Transition1" to="MainCharacter" method="_on_transition_1_body_exited"]
 [connection signal="player_fired_laser" from="MainCharacter/RayGun" to="LaserManager" method="_on_ray_gun_player_fired_laser"]
 [connection signal="playerHit" from="Aliens/AlienEnemy" to="MainCharacter" method="_on_alien_enemy_player_hit"]
