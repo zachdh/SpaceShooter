@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dol733g72xcyx"]
+
+[ext_resource type="FontFile" uid="uid://c6amvxlp70hop" path="res://Assets/Prototypes/game_over.ttf" id="1_yavh8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_iev2y"]
+font = ExtResource("1_yavh8")
+font_size = 500
+
+[node name="Game Over" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -637.0
+offset_top = -376.0
+offset_right = 647.0
+offset_bottom = 382.0
+color = Color(0.376471, 0, 0, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_left = -577.0
+offset_top = -219.0
+offset_right = 565.0
+offset_bottom = 66.0
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_iev2y")

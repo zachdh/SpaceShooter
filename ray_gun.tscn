@@ -18,8 +18,7 @@ texture = ExtResource("1_xprjh")
 offset = Vector2(20, 0)
 
 [node name="EndOfGun" type="Marker2D" parent="Sprite2D"]
-position = Vector2(37.8947, -2.22222)
-scale = Vector2(2.10526, 2.22222)
+position = Vector2(33.6842, -2.22222)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_p4sbw")

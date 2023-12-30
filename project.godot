@@ -21,7 +21,7 @@ Global="*res://global.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/nklbdev.aseprite_importers/plugin.cfg")
+enabled=PackedStringArray()
 
 [input]
 

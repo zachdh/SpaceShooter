@@ -8,7 +8,6 @@ var direction := Vector2.ZERO
 func _ready():
 	kill_timer.start()
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if direction != Vector2.ZERO:

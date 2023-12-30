@@ -4,13 +4,11 @@ extends CharacterBody2D
 var animated_sprite : AnimatedSprite2D
 const MAX_HEALTH = 5
 var health = MAX_HEALTH
-var currentCamera
 
 func _ready():
 	animated_sprite = $AnimatedSprite2D
 	animated_sprite.animation = "default"
-	Global.global_character_position = self.position
-	currentCamera = $"../Camera2D"
+	#Global.global_character_position = self.position
 	update_health_ui()
 	$Camera2D/HealthBar.max_value = MAX_HEALTH
 
@@ -51,19 +49,15 @@ func _process(_delta):
 	else:
 		animated_sprite.frame = 4
 
-func chase():
-	pass
-
 func hit():
 	pass
 
 func update_health_ui():
 	$Camera2D/HealthBar.value = health
 
-func _on_alien_enemy_player_hit(rotation_angle):
+func _on_alien_enemy_damage(rotation_angle):
 	health -= 1
-	if health == 0:
-		health = MAX_HEALTH
-		get_tree().paused = true
-		print("Game Over!")
 	update_health_ui()
+	if health == 0:
+		get_tree().change_scene_to_file("res://game_over.tscn")
+

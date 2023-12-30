@@ -1,62 +1,60 @@
 extends CharacterBody2D
 
-signal playerHit
-@export var speed : int = 1
-@onready var hit_timer = $HitTimer
-var player_position
+@export var speed : int = 25
+@export var health : int = 3
+@onready var hit_timer = $impactTimer
+@onready var despawn_timer = $despawnTimer
 var target_position
 var target = null
-var EnemySprite : AnimatedSprite2D
-var rotationDir
-const MAX_HEALTH = 3
-var health = MAX_HEALTH
+var rotationDir : float
+var status = true
 
 func _ready():
-	EnemySprite = $AlienAnimation
-
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
-	if target != null:
-		player_position = target.position
-		target_position = (player_position - self.position).normalized()
+func _physics_process(delta) -> void:
+	if target != null and status == true:
+		target_position = (target.position - self.position).normalized()
 		rotationDir = atan2(target_position.y, target_position.x)
-		if rotationDir < 0 and rotationDir > (-1*(PI/2)): #Looking UpRight
-			EnemySprite.flip_h = false
-		elif rotationDir < (-1*(PI/2)) and rotationDir > -1*PI: #Looking UpLeft
-			EnemySprite.flip_h = true
-		elif rotationDir > 0 and rotationDir < PI/2: #Looking DownRight
-			EnemySprite.flip_h = false
-		elif rotationDir > PI/2 and rotationDir < PI: #Looking DownLeft
-			EnemySprite.flip_h = true
+		if rotationDir > (-1*PI/2) and rotationDir < PI/2: #Looking right
+			$Sprite2D.flip_h = false
+		elif rotationDir < PI and rotationDir > (-1*PI): #Looking left
+			$Sprite2D.flip_h = true
 		velocity = target_position * speed
+	else:
+		velocity = Vector2(0,0)
 	move_and_slide()
 
 func _process(delta):
-	if velocity.length() > 0:
-		$AlienAnimation.play()
-	else:
-		$AlienAnimation.frame = 4
-
+	if velocity.length() > 0 and status == true:
+		$Sprite2D/AnimationPlayer.current_animation = "movement"
+		$Sprite2D/AnimationPlayer.play()
+	elif status == true:
+		$Sprite2D.frame = 4
 
 func _on_detection_range_body_entered(body):
-	if body.has_method("chase"):
-		target = body
+	target = body
 
 func _on_enemy_hitbox_body_entered(body):
-	if body.has_method("hit"):
-		emit_signal("playerHit", rotationDir)
-	if body.has_method("shot"):
-		EnemySprite.modulate = "FE3E3E"
+	if body.has_method("hit") and status == true:
+		emit_signal("damage", rotationDir)
+	if body.has_method("shot") and status == true:
+		print("hit")
+		$Sprite2D.modulate = "FE3E3E"
 		speed = -25
 		hit_timer.start()
 		health -= 1
 		if health == 0:
-			queue_free()
-
-
-#add player_hit by enemy knockbac
+			status = false
+			despawn_timer.start()
+			$Sprite2D/AnimationPlayer.current_animation = "death"
+			$Sprite2D/AnimationPlayer.play()
 
 func _on_hit_timer_timeout():
-	EnemySprite.modulate = "ffffff"
+	$Sprite2D.modulate = "b5b5b5"
 	speed = 25
+	
+func _on_despawn_timer_timeout():
+	$Sprite2D.frame = 4
+	self.queue_free()

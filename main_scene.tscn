@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://4fwvkvge6gvg" path="res://character_body_2d.tscn" id="4_46d3p"]
 [ext_resource type="Script" path="res://LaserManager.gd" id="5_42yx2"]
 [ext_resource type="PackedScene" uid="uid://cytsf1twqqjh6" path="res://ray_gun.tscn" id="5_d0o1s"]
-[ext_resource type="Script" path="res://PointLight2D.gd" id="7_s7t0r"]
 [ext_resource type="PackedScene" uid="uid://dkofefela1ssr" path="res://alien_enemy.tscn" id="7_xe7dy"]
 [ext_resource type="AudioStream" uid="uid://4mfioqp5oan4" path="res://Assets/emergency-alarm-with-reverb-29431.mp3" id="8_tf1cc"]
+[ext_resource type="Script" path="res://AlienManager.gd" id="8_u8fsd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ldvpm"]
 bg_color = Color(0.196078, 0.196078, 0.196078, 1)
@@ -56,16 +56,16 @@ texture_filter = 1
 [node name="TileMap" parent="." instance=ExtResource("1_sncv3")]
 
 [node name="MainCharacter" parent="." instance=ExtResource("4_46d3p")]
-position = Vector2(223, 154)
+position = Vector2(89, 162)
 
 [node name="Camera2D" type="Camera2D" parent="MainCharacter"]
 zoom = Vector2(2.5, 2.5)
 
 [node name="HealthBar" type="ProgressBar" parent="MainCharacter/Camera2D"]
-offset_left = -224.0
-offset_top = -123.0
-offset_right = -166.0
-offset_bottom = -119.0
+offset_left = -180.0
+offset_top = -100.8
+offset_right = -122.0
+offset_bottom = -96.8
 theme_override_styles/background = SubResource("StyleBoxFlat_ldvpm")
 theme_override_styles/fill = SubResource("StyleBoxFlat_qvxts")
 step = 1.0
@@ -77,7 +77,7 @@ position = Vector2(0, 3)
 [node name="Aliens" type="CanvasGroup" parent="."]
 
 [node name="AlienEnemy" parent="Aliens" instance=ExtResource("7_xe7dy")]
-position = Vector2(-712, -36)
+position = Vector2(380, 151)
 
 [node name="LaserManager" type="Node2D" parent="."]
 script = ExtResource("5_42yx2")
@@ -87,7 +87,6 @@ position = Vector2(38, 70)
 scale = Vector2(0.5, 0.5)
 color = Color(0.776471, 0, 0.121569, 1)
 texture = ExtResource("2_xnu1w")
-script = ExtResource("7_s7t0r")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PointLight2D"]
 autoplay = "Siren"
@@ -99,8 +98,8 @@ libraries = {
 position = Vector2(426, 69)
 scale = Vector2(0.5, 0.5)
 color = Color(0.776471, 0, 0.121569, 1)
+energy = 0.104
 texture = ExtResource("2_xnu1w")
-script = ExtResource("7_s7t0r")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PointLight2D2"]
 autoplay = "Siren"
@@ -115,5 +114,15 @@ volume_db = -15.0
 max_distance = 1000.0
 attenuation = 2.0
 
+[node name="AlienManager" type="Node2D" parent="."]
+script = ExtResource("8_u8fsd")
+Alien = ExtResource("7_xe7dy")
+
+[node name="AlienSpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(700, 350)
+
 [connection signal="player_fired_laser" from="MainCharacter/RayGun" to="LaserManager" method="_on_ray_gun_player_fired_laser"]
-[connection signal="playerHit" from="Aliens/AlienEnemy" to="MainCharacter" method="_on_alien_enemy_player_hit"]
+[connection signal="timeout" from="AlienSpawnTimer" to="AlienManager" method="_on_alien_spawn_timer_timeout"]
