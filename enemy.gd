@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+signal damage
 @export var speed : int = 25
 @export var health : int = 3
 @onready var hit_timer = $impactTimer

@@ -1,6 +1,6 @@
 extends Node2D
 @export var Alien : PackedScene
-var spawnpoints = [Vector2(-430,-150), Vector2(300,-150), Vector2(700,350)]
+var spawnpoints : Array = [Vector2(-430,-150), Vector2(300,-150), Vector2(700,350)]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -17,10 +17,6 @@ func spawn(alien, location):
 
 func _on_alien_spawn_timer_timeout():
 	var alien_instance = Alien.instantiate()
-	var list_length = spawnpoints.length()
-	var rand_point = randi()
-	print(list_length)
-
-	var spawnpoint = spawnpoints[rand_point]
+	var spawnpoint = spawnpoints.pick_random()
 	spawn(alien_instance, spawnpoint)
 	
