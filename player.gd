@@ -61,3 +61,15 @@ func _on_alien_enemy_damage(rotation_angle):
 	if health == 0:
 		get_tree().change_scene_to_file("res://game_over.tscn")
 
+#add more spawnpoints
+#tune spawntiming possibly increase the number that spawn as the round progresses
+#make the enemies do damage*
+#draw some torches
+#add score feature*
+	#emit signal from each instance of an alien when they are killed which runs a function that accumulates a total score
+	#add 1 to a global score variable when an alien is killed
+#make the enemies stay inside the walls*
+	#I have no idea watch lots of tutorials
+#maybe add a highscore feature for multiple players
+	#at the very end if youre not tired of this game
+

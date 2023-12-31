@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://v40cgll2ien8"]
+[gd_scene load_steps=10 format=3 uid="uid://v40cgll2ien8"]
 
 [ext_resource type="Texture2D" uid="uid://c0bmnpf2wfrhk" path="res://Assets/Prototypes/Wall-prototype.png" id="1_wupq0"]
 [ext_resource type="Texture2D" uid="uid://dwncp5prg05vi" path="res://Assets/Prototypes/wall_frontside-Sheet.png" id="2_o4xj3"]
@@ -10,18 +10,19 @@ polygon = PackedVector2Array(-4, -4, 4, -4, 4, -2, -2, -2, -2, 4, -4, 4)
 texture = ExtResource("1_wupq0")
 texture_region_size = Vector2i(24, 24)
 0:0/0 = 0
-0:0/0/terrain_set = 0
 0:0/0/terrain = 0
 0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_tog3j")
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, 4, -4, -4, 4, -4, 4, -3, -3, -3, -3, 4)
-0:0/0/terrains_peering_bit/right_side = 0
-0:0/0/terrains_peering_bit/bottom_right_corner = 0
-0:0/0/terrains_peering_bit/bottom_side = 0
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fs5dg"]
 polygon = PackedVector2Array(-12, -12, 12, -12, 12, 5.5, -12, 5.5)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_v7qms"]
+vertices = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)])
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jtxk8"]
 polygon = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
@@ -39,6 +40,7 @@ texture_region_size = Vector2i(24, 24)
 1:0/0/modulate = Color(0.521569, 0.564706, 0.631373, 1)
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_v7qms")
 2:0/0 = 0
 2:0/0/modulate = Color(0.521569, 0.564706, 0.631373, 1)
 2:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_jtxk8")
@@ -55,9 +57,7 @@ texture_region_size = Vector2i(24, 24)
 tile_size = Vector2i(24, 24)
 occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
-terrain_set_0/mode = 0
-terrain_set_0/terrain_0/name = "Walls"
-terrain_set_0/terrain_0/color = Color(0.615686, 0.105882, 0.611765, 1)
+navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_77toc")
 sources/1 = SubResource("TileSetAtlasSource_1a5tp")
 
