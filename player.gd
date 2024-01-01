@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed : int = 80
+@export var speed = 80
 var animated_sprite : AnimatedSprite2D
 const MAX_HEALTH = 5
 var health = MAX_HEALTH
@@ -8,7 +8,6 @@ var health = MAX_HEALTH
 func _ready():
 	animated_sprite = $AnimatedSprite2D
 	animated_sprite.animation = "default"
-	#Global.global_character_position = self.position
 	update_health_ui()
 	$Camera2D/HealthBar.max_value = MAX_HEALTH
 

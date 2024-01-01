@@ -1,7 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dkofefela1ssr"]
+[gd_scene load_steps=9 format=3 uid="uid://dkofefela1ssr"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_6l1fl"]
 [ext_resource type="Texture2D" uid="uid://cspd1fhfopq6l" path="res://Assets/Prototypes/Alien_enemy-Sheet.png" id="2_hm1b1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4ho7q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4rf3b"]
 
 [sub_resource type="Animation" id="Animation_cm3e7"]
 length = 0.001
@@ -58,8 +62,6 @@ _data = {
 "movement": SubResource("Animation_8tm77")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4ho7q"]
-
 [node name="enemy" type="CharacterBody2D"]
 texture_filter = 1
 scale = Vector2(1.2, 1.2)
@@ -68,6 +70,17 @@ collision_mask = 7
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_6l1fl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4ho7q")
+
+[node name="HitRecognition" type="Area2D" parent="."]
+scale = Vector2(1, 1)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitRecognition"]
+shape = SubResource("CircleShape2D_4rf3b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.709804, 0.709804, 0.709804, 1)
@@ -83,8 +96,13 @@ libraries = {
 "": SubResource("AnimationLibrary_eykdk")
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_4ho7q")
+[node name="Navigation" type="Node2D" parent="."]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Navigation"]
+
+[node name="RecalculateTimer" type="Timer" parent="Navigation"]
+wait_time = 0.1
+autostart = true
 
 [node name="despawnTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -93,15 +111,7 @@ wait_time = 2.0
 wait_time = 0.1
 one_shot = true
 
-[node name="Navigation" type="Node2D" parent="."]
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Navigation"]
-debug_enabled = true
-
-[node name="RecalculateTimer" type="Timer" parent="Navigation"]
-wait_time = 0.1
-autostart = true
-
+[connection signal="body_entered" from="HitRecognition" to="." method="_on_hit_recognition_body_entered"]
+[connection signal="timeout" from="Navigation/RecalculateTimer" to="." method="_on_recalculate_timer_timeout"]
 [connection signal="timeout" from="despawnTimer" to="." method="_on_despawn_timer_timeout"]
 [connection signal="timeout" from="impactTimer" to="." method="_on_hit_timer_timeout"]
-[connection signal="timeout" from="Navigation/RecalculateTimer" to="." method="_on_recalculate_timer_timeout"]
