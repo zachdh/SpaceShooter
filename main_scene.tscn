@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwpet7perkcis"]
+[gd_scene load_steps=10 format=3 uid="uid://cwpet7perkcis"]
 
 [ext_resource type="PackedScene" uid="uid://v40cgll2ien8" path="res://prototype.tscn" id="1_sncv3"]
 [ext_resource type="PackedScene" uid="uid://4fwvkvge6gvg" path="res://player.tscn" id="4_46d3p"]
 [ext_resource type="Script" path="res://LaserManager.gd" id="5_42yx2"]
 [ext_resource type="PackedScene" uid="uid://cytsf1twqqjh6" path="res://ray_gun.tscn" id="5_d0o1s"]
+[ext_resource type="Script" path="res://AlienManager.gd" id="7_3yjf1"]
 [ext_resource type="PackedScene" uid="uid://dkofefela1ssr" path="res://enemy.tscn" id="7_xe7dy"]
 [ext_resource type="AudioStream" uid="uid://4mfioqp5oan4" path="res://Assets/emergency-alarm-with-reverb-29431.mp3" id="8_tf1cc"]
 
@@ -63,4 +64,12 @@ attenuation = 2.0
 [node name="LaserManager" type="Node2D" parent="."]
 script = ExtResource("5_42yx2")
 
+[node name="AlienManager" type="Node2D" parent="."]
+script = ExtResource("7_3yjf1")
+Alien = ExtResource("7_xe7dy")
+
+[node name="SpawnTimer" type="Timer" parent="AlienManager"]
+autostart = true
+
 [connection signal="player_fired_laser" from="player/RayGun" to="LaserManager" method="_on_ray_gun_player_fired_laser"]
+[connection signal="timeout" from="AlienManager/SpawnTimer" to="AlienManager" method="_on_spawn_timer_timeout"]
