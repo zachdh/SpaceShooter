@@ -12,6 +12,7 @@ func _process(delta):
 
 func spawn(alien, location):
 	alien.set_position(location)
+	alien.damage.connect($"../player"._on_enemy_damage)
 	add_child(alien)
 	
 func _on_spawn_timer_timeout():

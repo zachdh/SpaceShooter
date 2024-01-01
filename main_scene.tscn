@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cwpet7perkcis"]
+[gd_scene load_steps=9 format=3 uid="uid://cwpet7perkcis"]
 
 [ext_resource type="PackedScene" uid="uid://v40cgll2ien8" path="res://prototype.tscn" id="1_sncv3"]
 [ext_resource type="PackedScene" uid="uid://4fwvkvge6gvg" path="res://player.tscn" id="4_46d3p"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cytsf1twqqjh6" path="res://ray_gun.tscn" id="5_d0o1s"]
 [ext_resource type="Script" path="res://AlienManager.gd" id="7_3yjf1"]
 [ext_resource type="PackedScene" uid="uid://dkofefela1ssr" path="res://enemy.tscn" id="7_xe7dy"]
-[ext_resource type="AudioStream" uid="uid://4mfioqp5oan4" path="res://Assets/emergency-alarm-with-reverb-29431.mp3" id="8_tf1cc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ldvpm"]
 bg_color = Color(0.196078, 0.196078, 0.196078, 1)
@@ -36,13 +35,12 @@ texture_filter = 1
 position = Vector2(233, 146)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
-zoom = Vector2(2.5, 2.5)
 
 [node name="HealthBar" type="ProgressBar" parent="player/Camera2D"]
-offset_left = -180.0
-offset_top = -100.8
-offset_right = -122.0
-offset_bottom = -96.8
+offset_left = -451.2
+offset_top = -252.8
+offset_right = -393.2
+offset_bottom = -248.8
 theme_override_styles/background = SubResource("StyleBoxFlat_ldvpm")
 theme_override_styles/fill = SubResource("StyleBoxFlat_qvxts")
 step = 1.0
@@ -50,16 +48,6 @@ show_percentage = false
 
 [node name="RayGun" parent="player" instance=ExtResource("5_d0o1s")]
 position = Vector2(0, 3)
-
-[node name="enemy" parent="." instance=ExtResource("7_xe7dy")]
-position = Vector2(337, 147)
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(-247, 11)
-stream = ExtResource("8_tf1cc")
-volume_db = -15.0
-max_distance = 1000.0
-attenuation = 2.0
 
 [node name="LaserManager" type="Node2D" parent="."]
 script = ExtResource("5_42yx2")

@@ -86,6 +86,14 @@ polygon = PackedVector2Array(-2, 8, 2, 8, 6, 7, 7, 0, 7, -6, 6, -7, 3, -9, -1, -
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(0.6, 0.6)
 color = Color(0.537255, 0.396078, 0.117647, 1)
+energy = 0.5
 shadow_enabled = true
+shadow_filter = 1
+texture = ExtResource("13_mfnf8")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+scale = Vector2(0.6, 0.6)
+color = Color(0.537255, 0.396078, 0.117647, 1)
+energy = 0.5
 shadow_filter = 1
 texture = ExtResource("13_mfnf8")

@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+signal damage(rotationDir)
 @export var speed = 25
 @export var health : int = 3
 @onready var hit_timer = $impactTimer
@@ -47,14 +48,18 @@ func _process(delta):
 
 func _on_hit_timer_timeout():
 	$Sprite2D.modulate = "b5b5b5"
-	speed = 25
+	speed = 100
 	
 func _on_despawn_timer_timeout():
 	$Sprite2D.frame = 4
 	self.queue_free()
 	
 func _on_hit_recognition_body_entered(body):
+	if body.NAME == "player" and status == true:
+		print("signal emitted")
+		emit_signal("damage", rotationDir)
 	if body.NAME == "laser" and status == true:
+		body.queue_free()
 		$Sprite2D.modulate = "FE3E3E"
 		speed = -25
 		hit_timer.start()

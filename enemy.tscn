@@ -6,6 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ho7q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4rf3b"]
+radius = 10.5
 
 [sub_resource type="Animation" id="Animation_cm3e7"]
 length = 0.001
@@ -66,10 +67,11 @@ _data = {
 texture_filter = 1
 scale = Vector2(1.2, 1.2)
 collision_layer = 4
-collision_mask = 7
+collision_mask = 3
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_6l1fl")
+speed = 100
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4ho7q")
@@ -77,7 +79,7 @@ shape = SubResource("CircleShape2D_4ho7q")
 [node name="HitRecognition" type="Area2D" parent="."]
 scale = Vector2(1, 1)
 collision_layer = 0
-collision_mask = 8
+collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitRecognition"]
 shape = SubResource("CircleShape2D_4rf3b")

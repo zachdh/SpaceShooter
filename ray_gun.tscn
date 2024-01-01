@@ -21,5 +21,6 @@ offset = Vector2(20, 0)
 position = Vector2(33.6842, -2.22222)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+visible = false
 stream = ExtResource("4_p4sbw")
 volume_db = -20.0

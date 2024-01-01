@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var speed = 80
+@export var NAME = "player"
 var animated_sprite : AnimatedSprite2D
 const MAX_HEALTH = 5
 var health = MAX_HEALTH
@@ -54,7 +55,7 @@ func hit():
 func update_health_ui():
 	$Camera2D/HealthBar.value = health
 
-func _on_alien_enemy_damage(rotation_angle):
+func _on_enemy_damage(rotationDir):
 	health -= 1
 	update_health_ui()
 	if health == 0:
@@ -71,4 +72,7 @@ func _on_alien_enemy_damage(rotation_angle):
 	#I have no idea watch lots of tutorials
 #maybe add a highscore feature for multiple players
 	#at the very end if youre not tired of this game
+
+
+
 

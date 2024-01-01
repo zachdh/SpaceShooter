@@ -31,6 +31,6 @@ func shoot():
 	var target = get_global_mouse_position()
 	var direction_to_mouse = end_of_gun.global_position.direction_to(target).normalized()
 	var rotation = atan2(direction_to_mouse.y, direction_to_mouse.x)
-	$AudioStreamPlayer2D.play()
+	#$AudioStreamPlayer2D.play()
 	emit_signal("player_fired_laser", laser_instance, end_of_gun.global_position, direction_to_mouse, rotation)
 
